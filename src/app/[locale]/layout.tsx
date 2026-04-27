@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { JetBrains_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -10,16 +12,11 @@ import { env } from "@/lib/env";
 import { routing } from "@/i18n/routing";
 import { locales, type Locale } from "@/i18n/config";
 
-const geistSans = Geist({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-geist-sans",
+  variable: "--font-code",
   display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-geist-mono",
-  display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 export const viewport: Viewport = {
@@ -47,6 +44,7 @@ export async function generateMetadata({
     metadataBase: new URL(baseUrl),
     title: { default: t("title"), template: `%s · ${t("title")}` },
     description: t("description"),
+    icons: { icon: "/favicon.svg" },
     alternates: {
       canonical: `/${locale}`,
       languages: Object.fromEntries(
@@ -79,7 +77,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
+      className={`dark ${GeistSans.variable} ${GeistMono.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-dvh bg-background text-foreground antialiased">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "./LangSwitcher";
@@ -17,23 +18,33 @@ export async function Header() {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/40 backdrop-blur-md supports-[backdrop-filter]:bg-background/40">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/50 backdrop-blur-md supports-[backdrop-filter]:bg-background/50">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
+
+        {/* Logo */}
         <Link
           href="/"
-          className="font-mono text-sm font-semibold tracking-tight text-foreground transition-colors hover:text-primary"
+          className="inline-flex items-center transition-opacity hover:opacity-80"
+          aria-label="Accueil — ~/portfolio"
         >
-          <span aria-hidden="true">~/</span>
-          <span>portfolio</span>
+          <Image
+            src="/logo-wordmark.svg"
+            alt="~/portfolio"
+            width={130}
+            height={20}
+            priority
+            className="h-5 w-auto"
+          />
         </Link>
 
+        {/* Nav desktop */}
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-6 text-sm">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-foreground/70 transition-colors hover:text-foreground"
+                  className="relative text-foreground/60 transition-colors hover:text-foreground after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-[oklch(0.70_0.28_240)] after:transition-[width] after:duration-200 hover:after:w-full"
                 >
                   {item.label}
                 </Link>
