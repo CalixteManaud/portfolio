@@ -1,0 +1,45 @@
+---
+title: "Portfolio 3D — DevOps como narrativa"
+summary: "Un portfolio interactivo donde el código es la propia demostración: escenas 3D, pipeline CI/CD animado, terminal jugable."
+---
+
+## El encargo
+
+Construir un portfolio que no se limite a **listar** competencias DevOps, sino que las **demuestre**.
+Cada sección es una demostración: la escena 3D enseña dominio de WebGL, el pipeline animado refleja cultura CI/CD,
+la terminal interactiva muestra soltura con la shell.
+
+<Callout variant="tip" title="Principio rector">
+Todo lo que afirmo en el sitio, el sitio mismo debe demostrarlo.
+</Callout>
+
+## Stack y decisiones técnicas
+
+- **Next.js 16 + App Router**: RSC en todas partes, Server Actions para el contacto, ISR para las stats de GitHub.
+- **React Three Fiber + Drei**: escenas 3D declarativas, lazy-loaded, desactivadas en `prefers-reduced-motion`.
+- **MDX (next-mdx-remote/rsc)**: proyectos y encuentros versionados en Git, compilados en build, sin coste runtime.
+- **next-intl**: 4 idiomas (fr/en/es/de), pathnames localizados, hreflang automático.
+- **Resend + Turnstile + Zod**: formulario sin BD, anti-bot, rate-limit en memoria.
+
+## Seguridad
+
+- CSP estricta, HSTS preload, COOP, X-Frame DENY.
+- Token GitHub fine-grained read-only público, nunca expuesto en el cliente.
+- Escaneo Trivy en CI, Dependabot, `pnpm audit --prod` pre-deploy.
+- Contenedor Docker no-root, FS solo lectura, capabilities drop ALL.
+
+## Rendimiento
+
+```ts
+// next.config.ts (extracto)
+optimizePackageImports: ["lucide-react", "@react-three/drei"],
+```
+
+Objetivo Lighthouse: **≥ 95** en las cuatro categorías. Los modelos 3D se comprimen con `gltf-transform` + Draco.
+
+## Lo que demuestra este proyecto
+
+1. **Cultura DevOps**: Dockerfile multi-stage, GitHub Actions, observabilidad Sentry.
+2. **Seguridad aplicativa**: headers, validación Zod, rate-limit, anti-bot.
+3. **Frontend de vanguardia**: 3D performante, animaciones 60fps, accesibilidad WCAG AA.
+4. **Cuidado del detalle**: i18n completo, fallback de contenido, reduced-motion, SEO estructurado.

@@ -1,0 +1,56 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next.js
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+
+# production
+*.tsbuildinfo
+
+# environment
+.env
+.env*.local
+.env.production
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# os
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# testing
+coverage/
+playwright-report/
+test-results/
+.playwright-cache/
+
+# vercel
+.vercel
+
+# sentry
+.sentryclirc
+
+# misc
+*.local
+.cache/
+.turbo/
+
+# Sentry Config File
+.env.sentry-build-plugin

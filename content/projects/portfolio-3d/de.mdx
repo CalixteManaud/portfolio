@@ -1,0 +1,45 @@
+---
+title: "3D-Portfolio — DevOps als Storytelling"
+summary: "Ein interaktives Portfolio, bei dem der Code selbst die Demo ist: 3D-Szenen, animierte CI/CD-Pipeline, spielbares Terminal."
+---
+
+## Das Briefing
+
+Ein Portfolio bauen, das DevOps-Kompetenzen nicht nur **auflistet**, sondern sie **beweist**.
+Jeder Abschnitt ist eine Demonstration: Die 3D-Szene zeigt WebGL-Können, die animierte Pipeline zeigt CI/CD-Kultur,
+das interaktive Terminal zeigt Shell-Erfahrung.
+
+<Callout variant="tip" title="Leitprinzip">
+Was ich auf der Seite behaupte, soll die Seite selbst beweisen.
+</Callout>
+
+## Stack & technische Entscheidungen
+
+- **Next.js 16 + App Router**: RSC überall, Server Actions für den Kontakt, ISR für GitHub-Stats.
+- **React Three Fiber + Drei**: deklaratives 3D, lazy-loaded, deaktiviert bei `prefers-reduced-motion`.
+- **MDX (next-mdx-remote/rsc)**: Projekte und Begegnungen in Git versioniert, beim Build kompiliert, kein Laufzeit-Overhead.
+- **next-intl**: 4 Sprachen (fr/en/es/de), lokalisierte Pathnames, automatische hreflang.
+- **Resend + Turnstile + Zod**: DB-loses Kontaktformular, Anti-Bot, In-Memory-Ratenbegrenzung.
+
+## Sicherheit
+
+- Strenge CSP, HSTS Preload, COOP, X-Frame DENY.
+- Fine-grained Read-Only Public GitHub-Token, niemals clientseitig exponiert.
+- Trivy-Scan in der CI, Dependabot, `pnpm audit --prod` vor Deploy.
+- Non-Root Docker-Container, Read-Only-FS, Capabilities drop ALL.
+
+## Performance
+
+```ts
+// next.config.ts (Auszug)
+optimizePackageImports: ["lucide-react", "@react-three/drei"],
+```
+
+Lighthouse-Ziel: **≥ 95** in allen vier Kategorien. 3D-Modelle werden via `gltf-transform` + Draco komprimiert.
+
+## Was dieses Projekt zeigt
+
+1. **DevOps-Kultur**: Multi-Stage Dockerfile, GitHub Actions, Sentry-Observability.
+2. **Anwendungssicherheit**: Headers, Zod-Validierung, Ratenbegrenzung, Anti-Bot.
+3. **Spitzen-Frontend**: performantes 3D, 60-FPS-Animationen, WCAG-AA-Barrierefreiheit.
+4. **Liebe zum Detail**: vollständige i18n, Content-Fallback, reduced-motion, strukturiertes SEO.

@@ -1,0 +1,11 @@
+{
+  "role": "DevOps Engineer Junior",
+  "company": "Studio Tech",
+  "startDate": "2022-01-01",
+  "endDate": "2024-06-01",
+  "location": "Paris",
+  "stack": ["Docker", "Kubernetes", "GitLab CI", "Terraform", "AWS"],
+  "order": 0,
+  "featured": false,
+  "tags": ["devops", "junior"]
+}

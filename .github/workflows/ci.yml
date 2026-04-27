@@ -1,0 +1,132 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "22"
+  PNPM_VERSION: "9.15.0"
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Lint, typecheck, unit tests, content/i18n integrity
+  # ---------------------------------------------------------------------------
+  quality:
+    name: Quality (lint · types · tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Biome (lint + format)
+        run: pnpm biome ci .
+
+      - name: TypeScript
+        run: pnpm typecheck
+
+      - name: i18n parity check
+        run: pnpm i18n:check
+
+      - name: Content integrity check
+        run: pnpm content:check
+        continue-on-error: true # content/ may be empty during early scaffold
+
+      - name: Unit tests
+        run: pnpm test --run --reporter=verbose
+
+  # ---------------------------------------------------------------------------
+  # Build (catches RSC / Server Action breakage early)
+  # ---------------------------------------------------------------------------
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build (with placeholder env)
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://example.com
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+          RESEND_API_KEY: re_placeholder
+          CONTACT_EMAIL_FROM: noreply@example.com
+          CONTACT_EMAIL_TO: noreply@example.com
+          TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+
+  # ---------------------------------------------------------------------------
+  # Security: pnpm audit + Trivy filesystem scan
+  # ---------------------------------------------------------------------------
+  security:
+    name: Security audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit (production)
+        run: pnpm audit --prod --audit-level=high
+        continue-on-error: true
+
+      - name: Trivy filesystem scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: "0"
+
+      - name: Upload Trivy results to GitHub Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif

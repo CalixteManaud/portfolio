@@ -1,0 +1,45 @@
+---
+title: "Portfolio 3D — DevOps as Storytelling"
+summary: "Un portfolio interactif où le code est lui-même la démonstration : scènes 3D, pipeline CI/CD animé, terminal jouable."
+---
+
+## Le brief
+
+Construire un portfolio qui ne se contente pas de **lister** des compétences DevOps, mais qui les **prouve**.
+Chaque section est une démonstration : la scène 3D montre la maîtrise WebGL, le pipeline animé montre la culture CI/CD,
+le terminal interactif montre l'aisance shell.
+
+<Callout variant="tip" title="Principe directeur">
+Tout ce que je revendique sur le site, le site lui-même doit en être la preuve.
+</Callout>
+
+## Stack & choix techniques
+
+- **Next.js 16 + App Router** : RSC partout, Server Actions pour le contact, ISR pour les stats GitHub.
+- **React Three Fiber + Drei** : scènes 3D déclaratives, lazy-loaded, désactivées sur `prefers-reduced-motion`.
+- **MDX (next-mdx-remote/rsc)** : projets et rencontres versionnés Git, compilés au build, zéro overhead runtime.
+- **next-intl** : 4 langues (fr/en/es/de), pathnames localisés, hreflang automatique.
+- **Resend + Turnstile + Zod** : formulaire contact sans BDD, anti-bot, rate-limit in-memory.
+
+## Sécurité
+
+- CSP strict, HSTS preload, COOP, X-Frame DENY.
+- Token GitHub fine-grained read-only public, jamais exposé côté client.
+- Trivy scan dans la CI, Dependabot, `pnpm audit --prod` pre-deploy.
+- Container Docker non-root, read-only FS, capabilities drop ALL.
+
+## Performance
+
+```ts
+// next.config.ts (extrait)
+optimizePackageImports: ["lucide-react", "@react-three/drei"],
+```
+
+Lighthouse cible : **≥ 95** sur les 4 catégories. Les modèles 3D sont compressés via `gltf-transform` + Draco.
+
+## Ce que ce projet démontre
+
+1. **DevOps culture** : Dockerfile multi-stage, GitHub Actions, observabilité Sentry.
+2. **Sécurité applicative** : headers, validation Zod, rate-limit, anti-bot.
+3. **Frontend de pointe** : 3D performant, animations 60fps, accessibilité WCAG AA.
+4. **Souci du détail** : i18n complet, fallback contenu, reduced-motion, SEO structuré.

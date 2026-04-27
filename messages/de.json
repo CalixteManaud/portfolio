@@ -1,0 +1,93 @@
+{
+  "Meta": {
+    "title": "Portfolio — DevOps & DevSecOps",
+    "description": "DevOps / DevSecOps Engineer & Webentwickler. Projekte, Werdegang, Begegnungen."
+  },
+  "Nav": {
+    "home": "Start",
+    "about": "Werdegang",
+    "projects": "Projekte",
+    "meetings": "Begegnungen",
+    "contact": "Kontakt"
+  },
+  "Hero": {
+    "eyebrow": "DevOps · DevSecOps · Webentwickler",
+    "title": "Systeme bauen, die standhalten.",
+    "subtitle": "Automatisierte Pipelines, sichere Plattformen, Web-Erlebnisse mit Wow-Effekt.",
+    "ctaProjects": "Projekte ansehen",
+    "ctaContact": "Kontakt aufnehmen",
+    "scaffoldNotice": "🚧 Initiales Setup — die 3D-Szene kommt."
+  },
+  "NotFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Der gesuchte Inhalt existiert (nicht mehr).",
+    "backHome": "Zurück zur Startseite"
+  },
+  "Contact": {
+    "title": "Kontakt",
+    "intro": "Ein Projekt, eine Frage, ein Kaffee? Das Formular landet direkt in meinem Postfach.",
+    "fields": {
+      "name": "Name",
+      "namePlaceholder": "Vor- und Nachname",
+      "email": "E-Mail",
+      "emailPlaceholder": "du@beispiel.com",
+      "subject": "Betreff",
+      "subjectPlaceholder": "Betreff deiner Nachricht",
+      "message": "Nachricht",
+      "messagePlaceholder": "Erzähl mir von deinem Projekt…",
+      "consent": "Ich willige in die Verarbeitung meiner Daten zur Beantwortung ein."
+    },
+    "submit": "Senden",
+    "states": {
+      "loading": "Wird gesendet…",
+      "success": "Nachricht gesendet. Antwort innerhalb 48h.",
+      "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    },
+    "errors": {
+      "rateLimited": "Zu viele Nachrichten. In einer Stunde erneut versuchen.",
+      "captchaFailed": "Bot-Verifizierung fehlgeschlagen.",
+      "validation": "Prüfe die Formularfelder.",
+      "sendFailed": "Versand fehlgeschlagen. Später erneut versuchen."
+    }
+  },
+  "LangSwitcher": {
+    "label": "Sprache wechseln",
+    "current": "Aktuelle Sprache"
+  },
+  "Projects": {
+    "title": "Projekte",
+    "intro": "Ausgewählte Projekte — Produkte, Plattformen, Experimente.",
+    "filters": {
+      "all": "Alle",
+      "label": "Nach Tag filtern"
+    },
+    "empty": "Keine passenden Projekte.",
+    "viewProject": "Projekt ansehen",
+    "links": { "repo": "Quellcode", "live": "Live", "docs": "Docs" },
+    "fallbackBadge": "Übersetzung nicht verfügbar — französische Version"
+  },
+  "Meetings": {
+    "title": "Begegnungen",
+    "intro": "Die Menschen, die Spuren hinterlassen haben.",
+    "empty": "Noch keine Begegnungen veröffentlicht.",
+    "fallbackBadge": "Übersetzung nicht verfügbar — französische Version"
+  },
+  "About": {
+    "title": "Werdegang",
+    "intro": "Stationen, Rollen, Terrains. Was ich unterwegs gelernt habe.",
+    "present": "heute",
+    "fallbackBadge": "Übersetzung nicht verfügbar — französische Version"
+  },
+  "Footer": {
+    "tagline": "Pipelines, Plattformen, Web-Erlebnisse.",
+    "rights": "Alle Rechte vorbehalten.",
+    "social": "Social",
+    "legal": "Impressum",
+    "privacy": "Datenschutz"
+  },
+  "MobileMenu": {
+    "open": "Menü öffnen",
+    "close": "Menü schliessen",
+    "title": "Menü"
+  }
+}

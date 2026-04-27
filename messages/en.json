@@ -1,0 +1,93 @@
+{
+  "Meta": {
+    "title": "Portfolio — DevOps & DevSecOps",
+    "description": "DevOps / DevSecOps engineer & web developer. Projects, journey, meetings."
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "meetings": "Meetings",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "eyebrow": "DevOps · DevSecOps · Web Developer",
+    "title": "Building systems that hold the line.",
+    "subtitle": "Automated pipelines, secure platforms, and web experiences that turn heads.",
+    "ctaProjects": "See projects",
+    "ctaContact": "Get in touch",
+    "scaffoldNotice": "🚧 Initial scaffold — 3D scene coming soon."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The content you're looking for doesn't exist (anymore).",
+    "backHome": "Back to home"
+  },
+  "Contact": {
+    "title": "Contact",
+    "intro": "A mission, a question, a coffee? The form lands straight in my inbox.",
+    "fields": {
+      "name": "Name",
+      "namePlaceholder": "Your first and last name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Your message subject",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your project…",
+      "consent": "I agree to my data being processed so you can reply to me."
+    },
+    "submit": "Send",
+    "states": {
+      "loading": "Sending…",
+      "success": "Message sent. Reply within 48h.",
+      "error": "Something went wrong. Try again in a moment."
+    },
+    "errors": {
+      "rateLimited": "Too many messages. Try again in an hour.",
+      "captchaFailed": "Bot verification failed.",
+      "validation": "Check the form fields.",
+      "sendFailed": "Send failed. Try again later."
+    }
+  },
+  "LangSwitcher": {
+    "label": "Switch language",
+    "current": "Current language"
+  },
+  "Projects": {
+    "title": "Projects",
+    "intro": "Selected projects — products, platforms, experiments.",
+    "filters": {
+      "all": "All",
+      "label": "Filter by tag"
+    },
+    "empty": "No projects match.",
+    "viewProject": "View project",
+    "links": { "repo": "Source code", "live": "Live", "docs": "Docs" },
+    "fallbackBadge": "Translation unavailable — French version shown"
+  },
+  "Meetings": {
+    "title": "Meetings",
+    "intro": "The people who left a mark.",
+    "empty": "No meetings published yet.",
+    "fallbackBadge": "Translation unavailable — French version shown"
+  },
+  "About": {
+    "title": "About",
+    "intro": "Steps, roles, terrains. What I learned along the way.",
+    "present": "present",
+    "fallbackBadge": "Translation unavailable — French version shown"
+  },
+  "Footer": {
+    "tagline": "Pipelines, platforms, web experiences.",
+    "rights": "All rights reserved.",
+    "social": "Social",
+    "legal": "Legal",
+    "privacy": "Privacy"
+  },
+  "MobileMenu": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "title": "Menu"
+  }
+}

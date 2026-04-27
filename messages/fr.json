@@ -1,0 +1,93 @@
+{
+  "Meta": {
+    "title": "Portfolio — DevOps & DevSecOps",
+    "description": "Expert DevOps / DevSecOps & développeur web. Projets, parcours, rencontres."
+  },
+  "Nav": {
+    "home": "Accueil",
+    "about": "Parcours",
+    "projects": "Projets",
+    "meetings": "Rencontres",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "eyebrow": "DevOps · DevSecOps · Développeur Web",
+    "title": "Construire des systèmes qui tiennent debout.",
+    "subtitle": "Pipelines automatisés, plateformes sécurisées, expériences web qui en mettent plein la vue.",
+    "ctaProjects": "Voir les projets",
+    "ctaContact": "Me contacter",
+    "scaffoldNotice": "🚧 Scaffold initial — la scène 3D arrive."
+  },
+  "NotFound": {
+    "title": "Page introuvable",
+    "description": "Le contenu cherché n'existe pas (ou plus).",
+    "backHome": "Retour à l'accueil"
+  },
+  "Contact": {
+    "title": "Contact",
+    "intro": "Une mission, une question, un café ? Le formulaire arrive directement dans ma boîte mail.",
+    "fields": {
+      "name": "Nom",
+      "namePlaceholder": "Ton prénom et nom",
+      "email": "Email",
+      "emailPlaceholder": "toi@exemple.com",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sujet de ton message",
+      "message": "Message",
+      "messagePlaceholder": "Raconte-moi ton projet…",
+      "consent": "J'accepte le traitement de mes données pour répondre à ma demande."
+    },
+    "submit": "Envoyer",
+    "states": {
+      "loading": "Envoi en cours…",
+      "success": "Message envoyé. Réponse sous 48h.",
+      "error": "Une erreur est survenue. Réessaye dans un instant."
+    },
+    "errors": {
+      "rateLimited": "Trop de messages envoyés. Réessaye dans une heure.",
+      "captchaFailed": "Vérification anti-bot échouée.",
+      "validation": "Vérifie les champs du formulaire.",
+      "sendFailed": "Échec d'envoi. Réessaye plus tard."
+    }
+  },
+  "LangSwitcher": {
+    "label": "Changer de langue",
+    "current": "Langue actuelle"
+  },
+  "Projects": {
+    "title": "Projets",
+    "intro": "Sélection de projets — produits, plateformes, expérimentations.",
+    "filters": {
+      "all": "Tous",
+      "label": "Filtrer par tag"
+    },
+    "empty": "Aucun projet ne correspond.",
+    "viewProject": "Voir le projet",
+    "links": { "repo": "Code source", "live": "En ligne", "docs": "Docs" },
+    "fallbackBadge": "Traduction non disponible — version française"
+  },
+  "Meetings": {
+    "title": "Rencontres",
+    "intro": "Les personnes qui ont laissé une trace.",
+    "empty": "Aucune rencontre publiée.",
+    "fallbackBadge": "Traduction non disponible — version française"
+  },
+  "About": {
+    "title": "Parcours",
+    "intro": "Étapes, rôles, terrains. Ce que j'ai appris en chemin.",
+    "present": "aujourd'hui",
+    "fallbackBadge": "Traduction non disponible — version française"
+  },
+  "Footer": {
+    "tagline": "Pipelines, plateformes, expériences web.",
+    "rights": "Tous droits réservés.",
+    "social": "Réseaux",
+    "legal": "Mentions",
+    "privacy": "Confidentialité"
+  },
+  "MobileMenu": {
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "title": "Menu"
+  }
+}

@@ -1,0 +1,45 @@
+---
+title: "3D Portfolio — DevOps as Storytelling"
+summary: "An interactive portfolio where the code itself is the demo: 3D scenes, animated CI/CD pipeline, playable terminal."
+---
+
+## The brief
+
+Build a portfolio that doesn't just **list** DevOps skills, but **proves** them.
+Every section is a demonstration: the 3D scene shows WebGL mastery, the animated pipeline shows CI/CD culture,
+the interactive terminal shows shell fluency.
+
+<Callout variant="tip" title="Guiding principle">
+Anything I claim on the site, the site itself should prove.
+</Callout>
+
+## Stack & technical choices
+
+- **Next.js 16 + App Router**: RSC everywhere, Server Actions for contact, ISR for GitHub stats.
+- **React Three Fiber + Drei**: declarative 3D, lazy-loaded, disabled on `prefers-reduced-motion`.
+- **MDX (next-mdx-remote/rsc)**: projects and meetings Git-versioned, compiled at build, zero runtime overhead.
+- **next-intl**: 4 languages (fr/en/es/de), localized pathnames, automatic hreflang.
+- **Resend + Turnstile + Zod**: DB-less contact form, anti-bot, in-memory rate limit.
+
+## Security
+
+- Strict CSP, HSTS preload, COOP, X-Frame DENY.
+- Fine-grained read-only public GitHub token, never exposed client-side.
+- Trivy scan in CI, Dependabot, `pnpm audit --prod` pre-deploy.
+- Non-root Docker container, read-only FS, capabilities drop ALL.
+
+## Performance
+
+```ts
+// next.config.ts (excerpt)
+optimizePackageImports: ["lucide-react", "@react-three/drei"],
+```
+
+Lighthouse target: **≥ 95** across all four categories. 3D models are compressed via `gltf-transform` + Draco.
+
+## What this project demonstrates
+
+1. **DevOps culture**: multi-stage Dockerfile, GitHub Actions, Sentry observability.
+2. **Application security**: headers, Zod validation, rate-limit, anti-bot.
+3. **Cutting-edge frontend**: performant 3D, 60fps animations, WCAG AA accessibility.
+4. **Attention to detail**: full i18n, content fallback, reduced-motion, structured SEO.

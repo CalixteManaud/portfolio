@@ -1,0 +1,24 @@
+---
+title: "Le mentor pragmatique"
+summary: "Celui qui m'a appris qu'un déploiement réussi se prépare avant le premier `git push`."
+---
+
+## Le contexte
+
+Première mission, équipe d'une dizaine de personnes, plateforme legacy en cours de migration vers Kubernetes.
+Lui : 15 ans de métier, calme, ne perdait jamais son sang-froid quand un cluster partait en vrille.
+
+## Ce qu'il m'a transmis
+
+<Callout variant="tip" title="Sa phrase fétiche">
+"Avant de pousser, demande-toi : si je me casse une jambe ce soir, est-ce que mon équipier peut faire le rollback à 3h du matin sans moi ?"
+</Callout>
+
+Le runbook avant la feature. Le rollback avant le forward.
+Le post-mortem sans nom et sans blâme. La pizza au troisième incident d'affilée.
+
+## Ce que j'ai gardé
+
+- **Documenter avant de déployer** : si ce n'est pas écrit, ça n'existe pas pour celui qui prendra l'astreinte demain.
+- **Automatiser le rollback en premier** : un déploiement n'est pas terminé tant qu'il ne sait pas s'annuler tout seul.
+- **Le calme se contagionne** autant que la panique. Choisis ce que tu propages.
