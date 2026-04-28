@@ -1,6 +1,6 @@
 "use client";
 
-import { Float, Text } from "@react-three/drei";
+import { Float, Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import type { Group, InstancedMesh, Mesh } from "three";
@@ -96,15 +96,20 @@ function PipelineStage({
         </mesh>
       </Float>
 
-      <Text
+      <Html
         position={[0, -1.05, 0]}
-        fontSize={0.22}
-        color="#e8e8f0"
-        anchorX="center"
-        anchorY="middle"
+        center
+        distanceFactor={6}
+        zIndexRange={[10, 0]}
+        style={{ pointerEvents: "none" }}
       >
-        {label}
-      </Text>
+        <span
+          className="select-none rounded-md border border-border/50 bg-background/70 px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground/85 backdrop-blur"
+          style={{ color }}
+        >
+          {label}
+        </span>
+      </Html>
     </group>
   );
 }
@@ -117,8 +122,7 @@ function FlowParticles({ trackLength }: { trackLength: number }) {
     const arr = new Float32Array(PARTICLE_COUNT * 3);
     const c = new Color();
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const stage =
-        STAGES[Math.floor((i / PARTICLE_COUNT) * STAGES.length)] ?? STAGES[0];
+      const stage = STAGES[Math.floor((i / PARTICLE_COUNT) * STAGES.length)] ?? STAGES[0];
       c.set(stage?.color ?? "#a78bfa");
       arr[i * 3] = c.r;
       arr[i * 3 + 1] = c.g;
@@ -127,8 +131,7 @@ function FlowParticles({ trackLength }: { trackLength: number }) {
     return arr;
   }, []);
   const offsets = useMemo(
-    () =>
-      Array.from({ length: PARTICLE_COUNT }, () => Math.random() * trackLength),
+    () => Array.from({ length: PARTICLE_COUNT }, () => Math.random() * trackLength),
     [trackLength],
   );
 
@@ -150,10 +153,7 @@ function FlowParticles({ trackLength }: { trackLength: number }) {
     <instancedMesh ref={meshRef} args={[undefined, undefined, PARTICLE_COUNT]}>
       <sphereGeometry args={[0.04, 8, 8]} />
       <meshBasicMaterial vertexColors transparent opacity={0.85} />
-      <instancedBufferAttribute
-        attach="instanceColor"
-        args={[colors, 3]}
-      />
+      <instancedBufferAttribute attach="instanceColor" args={[colors, 3]} />
     </instancedMesh>
   );
 }

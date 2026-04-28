@@ -35,6 +35,8 @@
 
   html {
     -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
     @apply font-sans;
   }
@@ -80,6 +82,32 @@
   .glow-violet  { box-shadow: 0 0 32px oklch(0.65 0.25 295 / 0.25); }
   .glow-cyan    { box-shadow: 0 0 20px oklch(0.78 0.22 195 / 0.25); }
   .text-glow-accent { text-shadow: 0 0 40px oklch(0.70 0.28 240 / 0.45); }
+
+  /* Hero decorative backgrounds */
+  .hero-ambient-glow {
+    background:
+      radial-gradient(ellipse 55% 65% at 68% 35%, oklch(0.65 0.25 295 / 0.30), transparent 65%),
+      radial-gradient(ellipse 35% 40% at 72% 65%, oklch(0.70 0.28 240 / 0.16), transparent 60%);
+  }
+  .hero-grid-pattern {
+    background-image:
+      linear-gradient(oklch(0.96 0.008 260) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.96 0.008 260) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-fallback-base {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      oklch(0.32 0.12 270) 0%,
+      oklch(0.18 0.04 270) 45%,
+      oklch(0.10 0.01 270) 100%
+    );
+  }
+  .hero-fallback-accents {
+    background-image:
+      radial-gradient(circle at 20% 30%, oklch(0.7 0.18 250) 0%, transparent 35%),
+      radial-gradient(circle at 80% 70%, oklch(0.7 0.18 200) 0%, transparent 35%);
+  }
 }
 
 @theme inline {

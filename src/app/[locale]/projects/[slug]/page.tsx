@@ -1,15 +1,16 @@
-import { ArrowLeft, ExternalLink, FileText, Github } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { type Locale, locales } from "@/i18n/config";
 import { Link } from "@/i18n/navigation";
-import { locales, type Locale } from "@/i18n/config";
 import { getEntry, listSlugs } from "@/lib/content";
+import { env } from "@/lib/env";
 
 export async function generateStaticParams() {
   const slugs = await listSlugs("projects");
-  return slugs.flatMap((slug) =>
-    locales.map((locale) => ({ locale, slug })),
-  );
+  return slugs.flatMap((slug) => locales.map((locale) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
@@ -20,9 +21,25 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const entry = await getEntry("projects", slug, locale);
   if (!entry) return {};
+  const title = String(entry.frontmatter.title ?? entry.meta.slug);
+  const description = String(entry.frontmatter.summary ?? "");
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  const ogUrl = `${baseUrl}/api/og?title=${encodeURIComponent(title)}&type=project`;
   return {
-    title: String(entry.frontmatter.title ?? entry.meta.slug),
-    description: String(entry.frontmatter.summary ?? ""),
+    title,
+    description,
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogUrl],
+    },
   };
 }
 
@@ -40,9 +57,24 @@ export default async function ProjectDetailPage({
   const t = await getTranslations("Projects");
   const title = String(entry.frontmatter.title ?? entry.meta.slug);
   const summary = String(entry.frontmatter.summary ?? "");
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
   return (
     <main className="mx-auto max-w-3xl px-4 pt-32 pb-24 md:px-6">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: title,
+          description: summary,
+          inLanguage: locale,
+          url: `${baseUrl}/projets/${slug}`,
+          author: { "@type": "Person", name: "Calixte Manaud" },
+          keywords: [...entry.meta.stack, ...entry.meta.tags].join(", "),
+          ...(entry.meta.publishedAt && { datePublished: entry.meta.publishedAt }),
+          ...(entry.meta.updatedAt && { dateModified: entry.meta.updatedAt }),
+        }}
+      />
       <Link
         href="/projects"
         className="mb-8 inline-flex items-center gap-1 text-sm text-foreground/60 transition-colors hover:text-foreground"
@@ -58,12 +90,8 @@ export default async function ProjectDetailPage({
       ) : null}
 
       <header className="mb-10 space-y-4 border-b border-border pb-8">
-        <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
-          {title}
-        </h1>
-        {summary ? (
-          <p className="text-lg leading-relaxed text-foreground/75">{summary}</p>
-        ) : null}
+        <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">{title}</h1>
+        {summary ? <p className="text-lg leading-relaxed text-foreground/75">{summary}</p> : null}
         {entry.meta.stack.length > 0 ? (
           <ul className="flex flex-wrap gap-1.5 pt-2">
             {entry.meta.stack.map((s) => (
@@ -79,7 +107,7 @@ export default async function ProjectDetailPage({
         {entry.meta.links.repo || entry.meta.links.live || entry.meta.links.docs ? (
           <div className="flex flex-wrap gap-3 pt-2">
             {entry.meta.links.repo ? (
-              <ExternalActionLink href={entry.meta.links.repo} icon={Github}>
+              <ExternalActionLink href={entry.meta.links.repo} icon={SiGithub}>
                 {t("links.repo")}
               </ExternalActionLink>
             ) : null}
@@ -108,7 +136,7 @@ function ExternalActionLink({
   children,
 }: {
   href: string;
-  icon: typeof Github;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children: React.ReactNode;
 }) {
   return (

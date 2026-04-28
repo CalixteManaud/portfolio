@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
-import { ProjectCard } from "./ProjectCard";
 import type { ProjectMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { ProjectCard } from "./ProjectCard";
 
 export type ProjectListItem = {
   meta: ProjectMeta;
@@ -36,11 +36,8 @@ export function ProjectsGrid({ items }: Props) {
       {tags.length > 0 ? (
         <fieldset>
           <legend className="sr-only">{t("filters.label")}</legend>
-          <div className="flex flex-wrap gap-2" role="group" aria-label={t("filters.label")}>
-            <FilterPill
-              active={activeTag === null}
-              onClick={() => setActiveTag(null)}
-            >
+          <div className="flex flex-wrap gap-2">
+            <FilterPill active={activeTag === null} onClick={() => setActiveTag(null)}>
               {t("filters.all")}
             </FilterPill>
             {tags.map((tag) => (
@@ -88,7 +85,7 @@ function FilterPill({
     <button
       type="button"
       onClick={onClick}
-      aria-pressed={active}
+      aria-pressed={active ? "true" : "false"}
       className={cn(
         "rounded-full border px-3 py-1 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
         active

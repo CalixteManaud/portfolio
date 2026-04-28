@@ -39,10 +39,7 @@ function scrubObject<T extends object>(obj: T): T {
  * Sentry beforeSend hook — strips PII (emails, IPs, bearer tokens, sensitive headers)
  * from breadcrumbs, request payloads, exception messages, and user context.
  */
-export function scrubEvent(
-  event: ErrorEvent,
-  _hint: EventHint,
-): ErrorEvent | null {
+export function scrubEvent(event: ErrorEvent, _hint: EventHint): ErrorEvent | null {
   // Drop the user object — we don't capture identifiable users on this site.
   event.user = undefined;
 
@@ -54,7 +51,7 @@ export function scrubEvent(
         }
       }
     }
-    if (event.request.cookies) event.request.cookies = "[redacted]";
+    if (event.request.cookies) delete event.request.cookies;
     if (event.request.data) {
       event.request.data =
         typeof event.request.data === "string"
@@ -76,9 +73,7 @@ export function scrubEvent(
 
   if (event.message) {
     event.message =
-      typeof event.message === "string"
-        ? (scrubString(event.message) as string)
-        : event.message;
+      typeof event.message === "string" ? (scrubString(event.message) as string) : event.message;
   }
 
   if (event.breadcrumbs) {

@@ -14,24 +14,13 @@ export async function Hero() {
       {/* Glow ambiant violet + bleu (fallback visuel quand la scène 3D charge) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background: [
-            "radial-gradient(ellipse 55% 65% at 68% 35%, oklch(0.65 0.25 295 / 0.30), transparent 65%)",
-            "radial-gradient(ellipse 35% 40% at 72% 65%, oklch(0.70 0.28 240 / 0.16), transparent 60%)",
-          ].join(", "),
-        }}
+        className="hero-ambient-glow pointer-events-none absolute inset-0 -z-10"
       />
 
       {/* Grid décoratif */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.033]"
-        style={{
-          backgroundImage:
-            "linear-gradient(oklch(0.96 0.008 260) 1px, transparent 1px), linear-gradient(90deg, oklch(0.96 0.008 260) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
+        className="hero-grid-pattern pointer-events-none absolute inset-0 -z-10 opacity-[0.033]"
       />
 
       {/* Vignette */}
@@ -43,11 +32,8 @@ export async function Hero() {
       {/* Contenu */}
       <div className="container-px relative z-10 flex h-full flex-col justify-center">
         <div className="max-w-3xl space-y-6">
-
           {/* Eyebrow */}
-          <p className="text-sm uppercase tracking-[0.22em] text-foreground/40">
-            {t("eyebrow")}
-          </p>
+          <p className="text-sm uppercase tracking-[0.22em] text-foreground/40">{t("eyebrow")}</p>
 
           {/* Titre avec mot accent */}
           <h1 className="text-balance text-5xl font-extrabold leading-[1.03] tracking-[-0.033em] md:text-7xl">
@@ -82,10 +68,7 @@ export async function Hero() {
 
       {/* Scroll hint */}
       <div className="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center">
-        <div
-          aria-hidden="true"
-          className="h-10 w-6 rounded-full border border-border/50 p-1"
-        >
+        <div aria-hidden="true" className="h-10 w-6 rounded-full border border-border/50 p-1">
           <div className="mx-auto h-2 w-1 animate-bounce rounded-full bg-foreground/50" />
         </div>
       </div>

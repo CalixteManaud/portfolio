@@ -1,10 +1,10 @@
 "use client";
 
 import { Check, Globe } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { localeFlags, localeNames, locales, type Locale } from "@/i18n/config";
+import { type Locale, localeFlags, localeNames, locales } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
@@ -49,8 +49,8 @@ export function LangSwitcher() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-expanded={open ? "true" : "false"}
         aria-label={t("label")}
         className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/40 px-2.5 py-1.5 text-sm font-medium text-foreground/85 backdrop-blur-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
       >
@@ -61,9 +61,8 @@ export function LangSwitcher() {
 
       {open ? (
         <ul
-          role="listbox"
           aria-label={t("label")}
-          className="absolute right-0 top-full z-50 mt-2 min-w-[180px] overflow-hidden rounded-lg border border-border bg-popover/95 py-1 shadow-xl backdrop-blur-md"
+          className="absolute right-0 top-full z-50 mt-2 min-w-45 overflow-hidden rounded-lg border border-border bg-popover/95 py-1 shadow-xl backdrop-blur-md"
         >
           {locales.map((loc) => {
             const active = loc === currentLocale;
@@ -71,8 +70,6 @@ export function LangSwitcher() {
               <li key={loc}>
                 <button
                   type="button"
-                  role="option"
-                  aria-selected={active}
                   aria-current={active ? "true" : undefined}
                   onClick={() => switchTo(loc)}
                   className={cn(
@@ -84,9 +81,7 @@ export function LangSwitcher() {
                     <span aria-hidden="true">{localeFlags[loc]}</span>
                     <span>{localeNames[loc]}</span>
                   </span>
-                  {active ? (
-                    <Check className="size-4 text-primary" aria-hidden="true" />
-                  ) : null}
+                  {active ? <Check className="size-4 text-primary" aria-hidden="true" /> : null}
                 </button>
               </li>
             );

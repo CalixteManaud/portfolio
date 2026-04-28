@@ -89,5 +89,9 @@
     "open": "Ouvrir le menu",
     "close": "Fermer le menu",
     "title": "Menu"
+  },
+  "DevOpsShowcase": {
+    "heading": "Le code est la démonstration.",
+    "subheading": "Trois preuves en direct : un terminal jouable, les stats GitHub mises à jour à l'heure, une pipeline CI/CD qui tourne en 3D."
   }
 }

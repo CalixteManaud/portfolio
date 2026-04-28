@@ -5,7 +5,5 @@ export default createMiddleware(routing);
 
 export const config = {
   // Match all routes except API, Next internals, and static assets.
-  matcher: [
-    "/((?!api|_next|_vercel|models|textures|fonts|fallbacks|.*\\..*).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel|monitoring|models|textures|fonts|fallbacks|.*\\..*).*)"],
 };

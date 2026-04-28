@@ -20,7 +20,6 @@ export async function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/50 backdrop-blur-md supports-[backdrop-filter]:bg-background/50">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
-
         {/* Logo */}
         <Link
           href="/"
@@ -34,6 +33,7 @@ export async function Header() {
             height={20}
             priority
             className="h-5 w-auto"
+            style={{ height: "auto" }}
           />
         </Link>
 

@@ -1,16 +1,20 @@
-import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
 import "@/styles/globals.css";
+import { ClientProviders } from "@/components/providers/ClientProviders";
 import { Footer } from "@/components/shared/Footer";
 import { Header } from "@/components/shared/Header";
-import { env } from "@/lib/env";
+import { SkipLink } from "@/components/shared/SkipLink";
+import { type Locale, locales } from "@/i18n/config";
 import { routing } from "@/i18n/routing";
-import { locales, type Locale } from "@/i18n/config";
+import { env } from "@/lib/env";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin", "latin-ext"],
@@ -47,9 +51,7 @@ export async function generateMetadata({
     icons: { icon: "/favicon.svg" },
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `${baseUrl}/${l}`]),
-      ),
+      languages: Object.fromEntries(locales.map((l) => [l, `${baseUrl}/${l}`])),
     },
     openGraph: {
       type: "website",
@@ -57,6 +59,20 @@ export async function generateMetadata({
       url: baseUrl,
       title: t("title"),
       description: t("description"),
+      images: [
+        {
+          url: `${baseUrl}/api/og?title=${encodeURIComponent(t("title"))}&type=default`,
+          width: 1200,
+          height: 630,
+          alt: t("title"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [`${baseUrl}/api/og?title=${encodeURIComponent(t("title"))}&type=default`],
     },
     robots: { index: true, follow: true },
   };
@@ -82,10 +98,17 @@ export default async function LocaleLayout({
     >
       <body className="min-h-dvh bg-background text-foreground antialiased">
         <NextIntlClientProvider>
-          <Header />
-          {children}
-          <Footer />
+          <ClientProviders>
+            <SkipLink locale={locale as Locale} />
+            <Header />
+            <div id="main-content" className="contents">
+              {children}
+            </div>
+            <Footer />
+          </ClientProviders>
         </NextIntlClientProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
