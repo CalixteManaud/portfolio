@@ -3,14 +3,14 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LangSwitcher } from "./LangSwitcher";
 import { MobileMenu } from "./MobileMenu";
+import { NavLink } from "./NavLink";
+
+export type NavHref = "/about" | "/projects" | "/meetings" | "/contact";
 
 export async function Header() {
   const t = await getTranslations("Nav");
 
-  const navItems: Array<{
-    href: "/" | "/about" | "/projects" | "/meetings" | "/contact";
-    label: string;
-  }> = [
+  const navItems: Array<{ href: NavHref; label: string }> = [
     { href: "/about", label: t("about") },
     { href: "/projects", label: t("projects") },
     { href: "/meetings", label: t("meetings") },
@@ -18,13 +18,12 @@ export async function Header() {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/50 backdrop-blur-md supports-[backdrop-filter]:bg-background/50">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/60 backdrop-blur-md supports-backdrop-filter:bg-background/55">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
-        {/* Logo */}
         <Link
           href="/"
-          className="inline-flex items-center transition-opacity hover:opacity-80"
-          aria-label="Accueil — ~/portfolio"
+          className="inline-flex items-center rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+          aria-label={t("home")}
         >
           <Image
             src="/logo-wordmark.svg"
@@ -37,17 +36,11 @@ export async function Header() {
           />
         </Link>
 
-        {/* Nav desktop */}
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-6 text-sm">
+          <ul className="flex items-center gap-1 text-sm">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="relative text-foreground/60 transition-colors hover:text-foreground after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-[oklch(0.70_0.28_240)] after:transition-[width] after:duration-200 hover:after:w-full"
-                >
-                  {item.label}
-                </Link>
+                <NavLink href={item.href}>{item.label}</NavLink>
               </li>
             ))}
           </ul>
@@ -55,7 +48,7 @@ export async function Header() {
 
         <div className="flex items-center gap-2">
           <LangSwitcher />
-          <MobileMenu />
+          <MobileMenu items={navItems} />
         </div>
       </div>
     </header>

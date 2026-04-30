@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 
-type Line =
-  | { kind: "input"; value: string; cwd: string }
-  | { kind: "output"; value: string }
-  | { kind: "html"; value: React.ReactNode };
+type Line = {
+  id: number;
+  kind: "input" | "output" | "html";
+  value: string;
+  cwd?: string;
+  node?: React.ReactNode;
+};
 
 const PROMPT_USER = "you";
 const PROMPT_HOST = "portfolio";
@@ -36,17 +38,17 @@ const SECTIONS: Record<string, string[]> = {
     "Security: Trivy, Snyk, Vault, Sigstore",
     "Web: Next.js, React, R3F, Tailwind",
   ],
-  contact: [
-    "Email: hi@example.dev",
-    "Tip: try `open /contact` to use the form.",
-  ],
+  contact: ["Email: hi@example.dev", "Tip: try `open /contact` to use the form."],
 };
 
 const SECTION_NAMES = Object.keys(SECTIONS);
 
 export function Terminal() {
-  const [lines, setLines] = useState<Line[]>([
-    { kind: "output", value: "Welcome. Type `help` to start." },
+  const idRef = useRef(1);
+  const nextId = () => idRef.current++;
+
+  const [lines, setLines] = useState<Line[]>(() => [
+    { id: 0, kind: "output", value: "Welcome. Type `help` to start." },
   ]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -55,6 +57,7 @@ export function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on every appended line — `lines` is the trigger
   useEffect(() => {
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
@@ -64,13 +67,17 @@ export function Terminal() {
 
   const focus = () => inputRef.current?.focus();
 
-  const print = (line: Line) => setLines((prev) => [...prev, line]);
+  const printInput = (value: string) =>
+    setLines((prev) => [...prev, { id: nextId(), kind: "input", value, cwd }]);
   const printOutput = (...vals: string[]) =>
-    setLines((prev) => [...prev, ...vals.map((v) => ({ kind: "output" as const, value: v }))]);
+    setLines((prev) => [
+      ...prev,
+      ...vals.map((v) => ({ id: nextId(), kind: "output" as const, value: v })),
+    ]);
 
   const run = (raw: string) => {
     const command = raw.trim();
-    print({ kind: "input", value: command, cwd });
+    printInput(command);
     if (!command) return;
     setHistory((prev) => [...prev, command]);
 
@@ -154,23 +161,19 @@ export function Terminal() {
   };
 
   return (
-    <div
+    <section
       onClick={focus}
       onKeyDown={(e) => {
         if (e.key === "Enter" && document.activeElement !== inputRef.current) focus();
       }}
-      className={cn(
-        "rounded-2xl border border-border bg-[#0b0b14] font-mono text-sm shadow-2xl",
-        "ring-1 ring-inset ring-white/5",
-      )}
-      role="region"
+      className="overflow-hidden rounded-lg border border-border/60 bg-[#0b0b14] font-mono text-sm shadow-inner"
       aria-label="Interactive terminal"
     >
-      <div className="flex items-center gap-2 border-b border-border/60 px-4 py-2.5">
-        <span className="size-3 rounded-full bg-red-500/80" aria-hidden="true" />
-        <span className="size-3 rounded-full bg-yellow-500/80" aria-hidden="true" />
-        <span className="size-3 rounded-full bg-green-500/80" aria-hidden="true" />
-        <span className="ml-3 text-xs text-foreground/55">
+      <div className="flex items-center gap-2 border-b border-border/60 px-3 py-2">
+        <span className="size-2.5 rounded-full bg-red-500/80" aria-hidden="true" />
+        <span className="size-2.5 rounded-full bg-yellow-500/80" aria-hidden="true" />
+        <span className="size-2.5 rounded-full bg-green-500/80" aria-hidden="true" />
+        <span className="ml-2 text-[11px] text-foreground/55">
           {PROMPT_USER}@{PROMPT_HOST}: {cwd}
         </span>
       </div>
@@ -180,31 +183,25 @@ export function Terminal() {
         className="h-72 overflow-y-auto px-4 py-3 leading-relaxed"
         aria-live="polite"
       >
-        {lines.map((line, i) => {
+        {lines.map((line) => {
           if (line.kind === "input") {
             return (
-              <p
-                key={i}
-                className="whitespace-pre-wrap text-foreground/85"
-              >
-                <Prompt cwd={line.cwd} />
+              <p key={line.id} className="whitespace-pre-wrap text-foreground/85">
+                <Prompt cwd={line.cwd ?? cwd} />
                 <span>{line.value}</span>
               </p>
             );
           }
           if (line.kind === "output") {
             return (
-              <p
-                key={i}
-                className="whitespace-pre-wrap text-foreground/65"
-              >
+              <p key={line.id} className="whitespace-pre-wrap text-foreground/65">
                 {line.value}
               </p>
             );
           }
           return (
-            <div key={i} className="text-foreground/85">
-              {line.value}
+            <div key={line.id} className="text-foreground/85">
+              {line.node}
             </div>
           );
         })}
@@ -226,7 +223,7 @@ export function Terminal() {
           />
         </form>
       </div>
-    </div>
+    </section>
   );
 }
 

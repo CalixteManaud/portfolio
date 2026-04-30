@@ -3,6 +3,7 @@
 import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import { useEffect } from "react";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
@@ -30,5 +31,9 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
     };
   }, [reduced]);
 
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return (
+    <MotionConfig reducedMotion="user">
+      <TooltipProvider delayDuration={150}>{children}</TooltipProvider>
+    </MotionConfig>
+  );
 }
