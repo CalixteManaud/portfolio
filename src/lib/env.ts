@@ -76,9 +76,7 @@ export const env = new Proxy(
   {
     get(target, key: string) {
       if (typeof window !== "undefined" && !key.startsWith("NEXT_PUBLIC_")) {
-        throw new Error(
-          `❌ Attempted to access server-only env var "${key}" from the client.`,
-        );
+        throw new Error(`❌ Attempted to access server-only env var "${key}" from the client.`);
       }
       return Reflect.get(target, key);
     },

@@ -1,5 +1,8 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
-import { withSentryConfig } from "@sentry/nextjs";
+// `@sentry/nextjs` n'expose pas de sous-chemin `/config` : `withSentryConfig`
+// est réexporté depuis la racine du paquet. Le sous-chemin passait tant qu'une
+// ancienne version le tolérait, et casse le typecheck depuis la 10.49.
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
@@ -10,15 +13,19 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const isDev = process.env.NODE_ENV !== "production";
 
+// Allowance dev-only pour le sélecteur du mode live d'Impeccable (localhost:8400).
+// Gardée par `isDev` : la CSP de production est strictement inchangée.
+const __impeccableLiveDev = isDev ? " http://localhost:8400" : "";
+
 // CSP: dev needs 'unsafe-eval' (HMR/Turbopack) and 'unsafe-inline'.
 // In prod we keep 'unsafe-inline' for now; harden with nonces via middleware later.
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.vercel-insights.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.vercel-insights.com${__impeccableLiveDev}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.sentry.io https://*.ingest.sentry.io https://challenges.cloudflare.com https://*.vercel-insights.com https://api.github.com",
+  `connect-src 'self' https://*.sentry.io https://*.ingest.sentry.io https://challenges.cloudflare.com https://*.vercel-insights.com https://api.github.com${__impeccableLiveDev}`,
   "frame-src 'self' https://challenges.cloudflare.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
@@ -56,6 +63,16 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "@react-three/drei"],
   },
+  /** La section Rencontres a été retirée. Ses URL localisées ont pu être
+   *  partagées ou indexées : elles renvoient donc en 301 vers l'accueil plutôt
+   *  que de servir un 404. */
+  async redirects() {
+    return ["/rencontres", "/meetings", "/encuentros", "/begegnungen"].flatMap((path) => [
+      { source: path, destination: "/", permanent: true },
+      { source: `${path}/:slug`, destination: "/", permanent: true },
+    ]);
+  },
+
   async headers() {
     return [
       {
@@ -70,9 +87,13 @@ export default withSentryConfig(bundleAnalyzer(withNextIntl(nextConfig)), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-  org: "warthoz-corp",
+  // `SENTRY_ORG` et `SENTRY_PROJECT` étaient déjà validés dans src/lib/env.ts
+  // mais jamais lus : les valeurs vivaient en dur ici, ce qui faisait deux
+  // sources de vérité pour la même donnée — et l'une des deux a vieilli.
+  // Sans ces variables, le plugin n'envoie simplement pas les source maps.
+  org: process.env.SENTRY_ORG,
 
-  project: "javascript-nextjs",
+  project: process.env.SENTRY_PROJECT,
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,

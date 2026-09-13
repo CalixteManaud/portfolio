@@ -13,10 +13,7 @@ type SiteverifyResponse = {
   cdata?: string;
 };
 
-export async function verifyTurnstile(
-  token: string,
-  remoteIp?: string,
-): Promise<boolean> {
+export async function verifyTurnstile(token: string, remoteIp?: string): Promise<boolean> {
   if (!token) return false;
 
   const body = new URLSearchParams({

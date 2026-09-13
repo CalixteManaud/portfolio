@@ -1,0 +1,13 @@
+{
+  "featured": false,
+  "order": 4,
+  "publishedAt": "2026-09-10",
+  "updatedAt": "2026-09-10",
+  "kind": "web",
+  "categories": ["web", "apps"],
+  "stack": ["Next.js", "Supabase", "shadcn/ui", "TypeScript"],
+  "tags": ["web"],
+  "links": {
+    "live": "https://cdm.rgtcity.fr/"
+  }
+}

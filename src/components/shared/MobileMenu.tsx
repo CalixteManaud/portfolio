@@ -6,9 +6,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Link, usePathname } from "@/i18n/navigation";
+import type { NavHref } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./ThemeToggle";
 
-type NavHref = "/about" | "/projects" | "/meetings" | "/contact";
 type Item = { href: NavHref; label: string };
 
 export function MobileMenu({ items }: { items: Item[] }) {
@@ -19,7 +20,7 @@ export function MobileMenu({ items }: { items: Item[] }) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" aria-label={t("open")} className="md:hidden">
+        <Button variant="outline" size="icon" aria-label={t("open")} className="lg:hidden">
           <Menu className="size-4" aria-hidden="true" />
         </Button>
       </SheetTrigger>
@@ -52,6 +53,9 @@ export function MobileMenu({ items }: { items: Item[] }) {
             })}
           </ul>
         </nav>
+        <div className="mt-6 px-5 sm:hidden">
+          <ThemeToggle />
+        </div>
       </SheetContent>
     </Sheet>
   );

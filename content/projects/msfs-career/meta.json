@@ -1,0 +1,11 @@
+{
+  "featured": false,
+  "order": 5,
+  "publishedAt": "2026-09-10",
+  "updatedAt": "2026-09-10",
+  "kind": "application",
+  "categories": ["web", "apps"],
+  "stack": ["Next.js", "OpenAI / Weather", "Map", "TypeScript"],
+  "tags": ["web"],
+  "links": {}
+}

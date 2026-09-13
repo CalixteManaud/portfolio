@@ -4,7 +4,7 @@
  *
  * Run via: pnpm i18n:check
  */
-import { readFile, readdir } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const MESSAGES_DIR = join(process.cwd(), "messages");
@@ -56,12 +56,12 @@ async function main() {
     if (missing.length) {
       hasError = true;
       console.error(`\n❌ [${locale}] Missing ${missing.length} key(s):`);
-      missing.forEach((k) => console.error(`   - ${k}`));
+      for (const k of missing) console.error(`   - ${k}`);
     }
     if (extra.length) {
       hasError = true;
       console.error(`\n❌ [${locale}] Extra ${extra.length} key(s) not in ${DEFAULT_LOCALE}:`);
-      extra.forEach((k) => console.error(`   + ${k}`));
+      for (const k of extra) console.error(`   + ${k}`);
     }
     if (!missing.length && !extra.length) {
       console.log(`✅ [${locale}] ${keys.length} keys — parity OK`);

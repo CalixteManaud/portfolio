@@ -1,0 +1,11 @@
+{
+  "slug": "03-salesforce-isochronix",
+  "role": "Consultant technique Salesforce",
+  "company": "Isochronix by TVH Consulting",
+  "startDate": "2023-01-01",
+  "endDate": "2024-01-01",
+  "location": "France",
+  "stack": ["Salesforce", "CI/CD", "Versioning", "Sandbox"],
+  "order": 2,
+  "featured": false
+}

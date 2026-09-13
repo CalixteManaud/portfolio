@@ -31,13 +31,7 @@ type Props = {
   theme?: "light" | "dark" | "auto";
 };
 
-export function Turnstile({
-  siteKey,
-  onToken,
-  onExpire,
-  onError,
-  theme = "dark",
-}: Props) {
+export function Turnstile({ siteKey, onToken, onExpire, onError, theme = "dark" }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const id = useId();
@@ -93,7 +87,10 @@ export function Turnstile({
         async
         defer
       />
-      <div ref={containerRef} id={id} aria-label="Captcha verification" />
+      {/* Conteneur d'injection du widget Cloudflare. Volontairement sans rôle ni
+          label : Turnstile monte son propre iframe, déjà titré et accessible.
+          Étiqueter le conteneur ajouterait une annonce en double. */}
+      <div ref={containerRef} id={id} />
     </>
   );
 }

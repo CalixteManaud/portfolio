@@ -4,27 +4,176 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+/* ─────────────────────────────────────────────────────────────────────
+   Source unique de vérité du système visuel.
 
-  /* ── Palette deep space ── */
-  --color-background:        oklch(0.10 0.025 260);
-  --color-foreground:        oklch(0.96 0.008 260);
-  --color-muted:             oklch(0.16 0.03 265);
-  --color-muted-foreground:  oklch(0.65 0.015 265);
-  --color-border:            oklch(0.30 0.03 265);
-  --color-accent:            oklch(0.70 0.28 240);
-  --color-accent-foreground: oklch(0.10 0.025 260);
+   Fond crème clair, encre presque noire, cartes sombres, et un cuivre
+   unique — la couleur du logo — comme seul signal. Les valeurs viennent
+   de la maquette validée ; le cuivre est assombri d'un cran là où il
+   porte du texte, pour tenir le contraste AA que la maquette ne tenait
+   pas (4,1:1 sur le fond pour de petits libellés).
 
-  /* ── Nouvelles couleurs signature ── */
-  --color-cyan:    oklch(0.78 0.22 195);   /* terminal, liens, code */
-  --color-violet:  oklch(0.65 0.25 295);   /* 3D glow, hero */
-  --color-green:   oklch(0.76 0.20 145);   /* CI/CD success, disponibilité */
+   Changer l'identité du site = changer ces lignes, et rien d'autre.
+   ───────────────────────────────────────────────────────────────────── */
+:root {
+  --board: #f6f1ea; /* fond de page */
+  --board-sunk: #efe8de; /* bandes et pastilles en retrait */
+  --chalk: #fdfbf8; /* cartes claires */
+  --ink: #17171b; /* texte principal */
+  --ink-soft: #5f5b57; /* texte secondaire — 6:1 sur le fond */
+  --rule: #e4dbd1; /* filets */
 
-  --radius-lg: 0.75rem;
-  --radius-md: 0.5rem;
-  --radius-sm: 0.25rem;
+  --copper: #a4653e; /* aplats cuivre : texte blanc à 4,7:1 */
+  --copper-deep: #8f5431; /* petit texte cuivre sur fond clair : 5,4:1 */
+  --copper-bright: #c4875c; /* cuivre sur fond sombre : 5,3:1 */
+  --copper-tint: #f1e3d6; /* pastilles cuivrées */
+  --copper-ink: #ffffff;
+  --steel: #8d8a86;
+
+  --go: #2f8a55;
+  --go-bright: #4cc07a;
+  --stop: #b8412e;
+
+  /* Les surfaces sombres : cartes d'expertise, bande « preuve », terminal. */
+  --screen: #1e2023;
+  --screen-raised: #26292c;
+  --screen-sunk: #16181a;
+  --screen-rule: #34373b;
+  --screen-ink: #f0ebe4;
+  --screen-soft: #a7a29b; /* 6,3:1 sur --screen */
+
+  /* Le monogramme 3D du hero et sa piste de circuit. */
+  --monogram: #e2dcd4;
+  --monogram-trace: #d2b096;
+
+  /* Tuiles d'icône des projets : le seul bleu de la maquette, pâle, jamais
+     en signal — il distingue un projet d'une action. */
+  --tile: #e6edf5;
+  --tile-ink: #35689c;
+
+  --radius: 0.875rem;
+
+  --lift-1: 0 1px 2px rgb(23 23 27 / 0.05), 0 4px 12px rgb(23 23 27 / 0.05);
+  --lift-2: 0 2px 4px rgb(23 23 27 / 0.07), 0 14px 32px rgb(23 23 27 / 0.1);
+  --lift-3: 0 6px 12px rgb(23 23 27 / 0.1), 0 30px 60px rgb(23 23 27 / 0.16);
+}
+
+/* Sombre : le fond passe au graphite, les cartes sombres restent
+   au-dessus du fond d'un cran pour garder leur relief. */
+.dark {
+  --board: #141416;
+  --board-sunk: #0f0f11;
+  --chalk: #1c1d20;
+  --ink: #efeae3;
+  --ink-soft: #aba59e;
+  --rule: #2e3034;
+
+  --copper: #c4875c;
+  --copper-deep: #d39a71;
+  --copper-bright: #d39a71;
+  --copper-tint: #2b221b;
+  --copper-ink: #17171b;
+  --steel: #6f6c68;
+
+  --go: #4cc07a;
+  --go-bright: #5fd08c;
+  --stop: #e0664f;
+
+  --screen: #1f2124;
+  --screen-raised: #292c30;
+  --screen-sunk: #17191b;
+  --screen-rule: #3a3d42;
+
+  --monogram: #2c2e32;
+  --monogram-trace: #8e6446;
+
+  --tile: #1d2a38;
+  --tile-ink: #8fb6dc;
+
+  --lift-1: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
+  --lift-2: 0 2px 4px rgb(0 0 0 / 0.34), 0 14px 32px rgb(0 0 0 / 0.36);
+  --lift-3: 0 6px 12px rgb(0 0 0 / 0.4), 0 30px 60px rgb(0 0 0 / 0.5);
+}
+
+@theme inline {
+  /* Une famille pour la voix et la lecture — celle que la mesure de la
+     maquette a désignée — une mono pour la donnée, une main pour les notes. */
+  --font-display: var(--font-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-hand: var(--font-sunrise), ui-rounded, cursive;
+  --font-heading: var(--font-display);
+
+  --color-background: var(--board);
+  --color-foreground: var(--ink);
+  --color-card: var(--chalk);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--chalk);
+  --color-popover-foreground: var(--ink);
+  --color-muted: var(--board-sunk);
+  --color-muted-foreground: var(--ink-soft);
+  --color-border: var(--rule);
+  --color-input: var(--rule);
+  --color-ring: var(--copper);
+
+  --color-primary: var(--copper);
+  --color-primary-foreground: var(--copper-ink);
+  --color-secondary: var(--board-sunk);
+  --color-secondary-foreground: var(--ink);
+  --color-accent: var(--board-sunk);
+  --color-accent-foreground: var(--ink);
+  --color-destructive: var(--stop);
+
+  --color-board: var(--board);
+  --color-board-sunk: var(--board-sunk);
+  --color-chalk: var(--chalk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-copper: var(--copper);
+  --color-copper-deep: var(--copper-deep);
+  --color-copper-bright: var(--copper-bright);
+  --color-copper-tint: var(--copper-tint);
+  --color-copper-ink: var(--copper-ink);
+  --color-steel: var(--steel);
+  --color-go: var(--go);
+  --color-go-bright: var(--go-bright);
+  --color-stop: var(--stop);
+  --color-screen: var(--screen);
+  --color-screen-raised: var(--screen-raised);
+  --color-screen-sunk: var(--screen-sunk);
+  --color-screen-rule: var(--screen-rule);
+  --color-screen-ink: var(--screen-ink);
+  --color-screen-soft: var(--screen-soft);
+  --color-tile: var(--tile);
+  --color-tile-ink: var(--tile-ink);
+
+  --color-chart-1: var(--copper);
+  --color-chart-2: var(--steel);
+  --color-chart-3: var(--go);
+  --color-chart-4: var(--ink-soft);
+  --color-chart-5: var(--stop);
+
+  --color-sidebar: var(--chalk);
+  --color-sidebar-foreground: var(--ink);
+  --color-sidebar-primary: var(--copper);
+  --color-sidebar-primary-foreground: var(--copper-ink);
+  --color-sidebar-accent: var(--board-sunk);
+  --color-sidebar-accent-foreground: var(--ink);
+  --color-sidebar-border: var(--rule);
+  --color-sidebar-ring: var(--copper);
+
+  --shadow-lift-1: var(--lift-1);
+  --shadow-lift-2: var(--lift-2);
+  --shadow-lift-3: var(--lift-3);
+
+  --radius-sm: calc(var(--radius) * 0.4);
+  --radius-md: calc(var(--radius) * 0.6);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.15);
+  --radius-2xl: calc(var(--radius) * 1.45);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
@@ -38,7 +187,12 @@
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    color-scheme: light;
     @apply font-sans;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
@@ -49,15 +203,48 @@
     @apply bg-background text-foreground;
   }
 
+  .font-display,
+  .font-heading,
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-accent-foreground);
+    background: var(--copper);
+    color: var(--copper-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--copper);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 4px;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--copper);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--board-sunk);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--steel);
+    border: 3px solid var(--board-sunk);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ink-soft);
+  }
+  * {
+    scrollbar-color: var(--steel) var(--board-sunk);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -73,147 +260,67 @@
 }
 
 @layer utilities {
+  /* Colonne de contenu de la maquette : 1172 px à 1440, marges fluides. */
+  .container-page {
+    margin-inline: auto;
+    width: min(100% - 2 * clamp(1.25rem, 4vw, 3rem), 73.25rem);
+  }
+
   .container-px {
     padding-inline: clamp(1rem, 4vw, 3rem);
   }
 
-  /* Glow helpers */
-  .glow-accent  { box-shadow: 0 0 24px oklch(0.70 0.28 240 / 0.35); }
-  .glow-violet  { box-shadow: 0 0 32px oklch(0.65 0.25 295 / 0.25); }
-  .glow-cyan    { box-shadow: 0 0 20px oklch(0.78 0.22 195 / 0.25); }
-  .text-glow-accent { text-shadow: 0 0 40px oklch(0.70 0.28 240 / 0.45); }
-
-  /* Hero decorative backgrounds */
-  .hero-ambient-glow {
-    background:
-      radial-gradient(ellipse 55% 65% at 68% 35%, oklch(0.65 0.25 295 / 0.30), transparent 65%),
-      radial-gradient(ellipse 35% 40% at 72% 65%, oklch(0.70 0.28 240 / 0.16), transparent 60%);
-  }
-  .hero-grid-pattern {
-    background-image:
-      linear-gradient(oklch(0.96 0.008 260) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.96 0.008 260) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-fallback-base {
-    background: radial-gradient(
-      ellipse 80% 60% at 50% 40%,
-      oklch(0.32 0.12 270) 0%,
-      oklch(0.18 0.04 270) 45%,
-      oklch(0.10 0.01 270) 100%
+  /* Trame de points décorative des marges de la maquette. */
+  .dot-grid {
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--ink) 14%, transparent) 1.1px,
+      transparent 1.4px
     );
+    background-size: 12px 12px;
   }
-  .hero-fallback-accents {
-    background-image:
-      radial-gradient(circle at 20% 30%, oklch(0.7 0.18 250) 0%, transparent 35%),
-      radial-gradient(circle at 80% 70%, oklch(0.7 0.18 200) 0%, transparent 35%);
+
+  .dot-grid-screen {
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--screen-ink) 12%, transparent) 1.1px,
+      transparent 1.4px
+    );
+    background-size: 12px 12px;
   }
-}
 
-@theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
+  /* Hérités des pages qui n'ont pas encore été reprises (/skills). */
+  .board-light {
+    background:
+      radial-gradient(
+        ellipse 70% 55% at 12% -10%,
+        color-mix(in oklab, var(--chalk) 85%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 95% 105%,
+        color-mix(in oklab, var(--copper) 7%, transparent),
+        transparent 65%
+      );
+  }
 
-/* shadcn dark mode — conservé pour compatibilité composants */
-:root {
-  --background: oklch(0.10 0.025 260);
-  --foreground: oklch(0.96 0.008 260);
-  --card: oklch(0.16 0.03 265);
-  --card-foreground: oklch(0.96 0.008 260);
-  --popover: oklch(0.16 0.03 265);
-  --popover-foreground: oklch(0.96 0.008 260);
-  --primary: oklch(0.96 0.008 260);
-  --primary-foreground: oklch(0.10 0.025 260);
-  --secondary: oklch(0.22 0.03 265);
-  --secondary-foreground: oklch(0.96 0.008 260);
-  --muted: oklch(0.16 0.03 265);
-  --muted-foreground: oklch(0.65 0.015 265);
-  --accent: oklch(0.22 0.03 265);
-  --accent-foreground: oklch(0.96 0.008 260);
-  --destructive: oklch(0.60 0.24 28);
-  --border: oklch(0.30 0.03 265);
-  --input: oklch(0.30 0.03 265);
-  --ring: oklch(0.70 0.28 240);
-  --chart-1: oklch(0.70 0.28 240);
-  --chart-2: oklch(0.78 0.22 195);
-  --chart-3: oklch(0.65 0.25 295);
-  --chart-4: oklch(0.76 0.20 145);
-  --chart-5: oklch(0.60 0.24 28);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.16 0.03 265);
-  --sidebar-foreground: oklch(0.96 0.008 260);
-  --sidebar-primary: oklch(0.70 0.28 240);
-  --sidebar-primary-foreground: oklch(0.10 0.025 260);
-  --sidebar-accent: oklch(0.22 0.03 265);
-  --sidebar-accent-foreground: oklch(0.96 0.008 260);
-  --sidebar-border: oklch(0.30 0.03 265);
-  --sidebar-ring: oklch(0.70 0.28 240);
-}
+  .tool-shadow {
+    background: color-mix(in oklab, var(--steel) 22%, transparent);
+  }
 
-.dark {
-  --background: oklch(0.10 0.025 260);
-  --foreground: oklch(0.96 0.008 260);
-  --card: oklch(0.16 0.03 265);
-  --card-foreground: oklch(0.96 0.008 260);
-  --popover: oklch(0.16 0.03 265);
-  --popover-foreground: oklch(0.96 0.008 260);
-  --primary: oklch(0.96 0.008 260);
-  --primary-foreground: oklch(0.10 0.025 260);
-  --secondary: oklch(0.22 0.03 265);
-  --secondary-foreground: oklch(0.96 0.008 260);
-  --muted: oklch(0.16 0.03 265);
-  --muted-foreground: oklch(0.65 0.015 265);
-  --accent: oklch(0.22 0.03 265);
-  --accent-foreground: oklch(0.96 0.008 260);
-  --destructive: oklch(0.60 0.24 28);
-  --border: oklch(0.30 0.03 265);
-  --input: oklch(0.30 0.03 265);
-  --ring: oklch(0.70 0.28 240);
-  --sidebar: oklch(0.16 0.03 265);
-  --sidebar-foreground: oklch(0.96 0.008 260);
-  --sidebar-primary: oklch(0.70 0.28 240);
-  --sidebar-primary-foreground: oklch(0.10 0.025 260);
-  --sidebar-accent: oklch(0.22 0.03 265);
-  --sidebar-accent-foreground: oklch(0.96 0.008 260);
-  --sidebar-border: oklch(0.30 0.03 265);
-  --sidebar-ring: oklch(0.70 0.28 240);
+  .riveted::before,
+  .riveted::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--ink) 25%, transparent);
+    transform: translateY(-50%);
+  }
+  .riveted::before {
+    left: 0.55rem;
+  }
+  .riveted::after {
+    right: 0.55rem;
+  }
 }

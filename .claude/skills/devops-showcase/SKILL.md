@@ -16,7 +16,7 @@ Terminal stylisé qui accepte des commandes fictives pour explorer le portfolio.
 ### Commandes à implémenter
 
 ```
-whoami          → "warthoz — DevOps / DevSecOps Engineer"
+whoami          → "Calixte Manaud — DevOps · DevSecOps · développeur web"
 pwd             → "/portfolio/home"
 ls              → "about/ projects/ meetings/ contact/ skills.json"
 cat skills.json → affiche les compétences en JSON
@@ -37,7 +37,7 @@ import { useState, useRef, useEffect, KeyboardEvent } from "react";
 type Line = { type: "input" | "output" | "error"; text: string };
 
 const commands: Record<string, () => string | Promise<string>> = {
-  whoami: () => "warthoz — DevOps / DevSecOps Engineer",
+  whoami: () => t("whoami"), // les sorties du terminal viennent de messages/*.json
   pwd: () => "/portfolio/home",
   ls: () => "about/  projects/  meetings/  contact/  skills.json",
   help: () => "Available: whoami, pwd, ls, cat, tree, deploy, clear, help",

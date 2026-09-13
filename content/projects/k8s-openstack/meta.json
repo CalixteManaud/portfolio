@@ -1,0 +1,11 @@
+{
+  "featured": false,
+  "order": 2,
+  "publishedAt": "2026-09-10",
+  "updatedAt": "2026-09-10",
+  "kind": "infrastructure",
+  "categories": ["devops", "cloud", "automation"],
+  "stack": ["Terraform", "Kubernetes", "MicroK8s", "Linux"],
+  "tags": ["kubernetes", "iac", "cloud"],
+  "links": {}
+}

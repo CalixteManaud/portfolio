@@ -33,11 +33,7 @@ export type RateLimitResult = {
  * this provides best-effort throttling, not strict enforcement.
  * For a portfolio with low volume + Turnstile upstream, that's acceptable.
  */
-export function rateLimit(
-  key: string,
-  limit: number,
-  windowMs: number,
-): RateLimitResult {
+export function rateLimit(key: string, limit: number, windowMs: number): RateLimitResult {
   ensureCleanup();
   const now = Date.now();
   const existing = store.get(key);

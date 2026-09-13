@@ -1,12 +1,4 @@
-import { Body } from "@react-email/body";
-import { Container } from "@react-email/container";
-import { Head } from "@react-email/head";
-import { Heading } from "@react-email/heading";
-import { Hr } from "@react-email/hr";
-import { Html } from "@react-email/html";
-import { Preview } from "@react-email/preview";
-import { Section } from "@react-email/section";
-import { Text } from "@react-email/text";
+import { Body, Container, Head, Heading, Hr, Html, Preview, Section, Text } from "react-email";
 
 type Props = {
   name: string;
@@ -18,15 +10,7 @@ type Props = {
   userAgent?: string;
 };
 
-export function ContactEmail({
-  name,
-  email,
-  subject,
-  message,
-  locale,
-  ip,
-  userAgent,
-}: Props) {
+export function ContactEmail({ name, email, subject, message, locale, ip, userAgent }: Props) {
   return (
     <Html lang={locale}>
       <Head />
@@ -61,9 +45,7 @@ export function ContactEmail({
           <Section style={meta}>
             <Text style={metaText}>Locale: {locale}</Text>
             {ip ? <Text style={metaText}>IP: {ip}</Text> : null}
-            {userAgent ? (
-              <Text style={metaText}>User-Agent: {userAgent}</Text>
-            ) : null}
+            {userAgent ? <Text style={metaText}>User-Agent: {userAgent}</Text> : null}
           </Section>
         </Container>
       </Body>
@@ -74,8 +56,7 @@ export function ContactEmail({
 const body = {
   backgroundColor: "#0b0b14",
   color: "#e8e8f0",
-  fontFamily:
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif',
   margin: 0,
   padding: "32px 0",
 };

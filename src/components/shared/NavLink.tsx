@@ -1,25 +1,25 @@
 "use client";
 
 import { Link, usePathname } from "@/i18n/navigation";
+import type { NavHref } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-
-type NavHref = "/about" | "/projects" | "/meetings" | "/contact";
 
 export function NavLink({ href, children }: { href: NavHref; children: React.ReactNode }) {
   const pathname = usePathname();
-  const active = pathname === href || pathname.startsWith(`${href}/`);
+  // L'accueil ne s'active que sur lui-même : sinon, tout chemin commençant
+  // par « / » l'allumerait.
+  const active =
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative inline-flex h-9 items-center rounded-md px-3 text-sm transition-colors",
-        "text-foreground/65 hover:bg-muted/60 hover:text-foreground",
-        "aria-[current=page]:text-foreground",
-        "after:absolute after:bottom-1.5 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-primary/80 after:transition-transform after:duration-200",
+        "relative inline-flex h-10 items-center text-[14.5px] font-medium transition-colors",
+        "text-ink-soft hover:text-ink aria-[current=page]:text-ink",
+        "after:absolute after:inset-x-0 after:bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-copper after:transition-transform after:duration-300 after:ease-out",
         "hover:after:scale-x-100 aria-[current=page]:after:scale-x-100",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60",
       )}
     >
       {children}

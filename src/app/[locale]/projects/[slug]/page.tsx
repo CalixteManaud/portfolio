@@ -60,7 +60,7 @@ export default async function ProjectDetailPage({
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-32 pb-24 md:px-6">
+    <main id="main-content" className="mx-auto max-w-3xl px-4 pt-32 pb-24 md:px-6">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -69,7 +69,7 @@ export default async function ProjectDetailPage({
           description: summary,
           inLanguage: locale,
           url: `${baseUrl}/projets/${slug}`,
-          author: { "@type": "Person", name: "Calixte Manaud" },
+          author: { "@type": "Person", name: "Manaud Calixte" },
           keywords: [...entry.meta.stack, ...entry.meta.tags].join(", "),
           ...(entry.meta.publishedAt && { datePublished: entry.meta.publishedAt }),
           ...(entry.meta.updatedAt && { dateModified: entry.meta.updatedAt }),
@@ -84,7 +84,7 @@ export default async function ProjectDetailPage({
       </Link>
 
       {entry.isFallback ? (
-        <p className="mb-6 inline-flex rounded-md border border-amber-500/40 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-200">
+        <p className="mb-6 inline-flex rounded-md border border-copper/40 bg-copper/10 px-3 py-1.5 text-xs text-copper">
           {t("fallbackBadge")}
         </p>
       ) : null}

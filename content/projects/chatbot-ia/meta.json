@@ -1,0 +1,11 @@
+{
+  "featured": true,
+  "order": 1,
+  "publishedAt": "2026-09-10",
+  "updatedAt": "2026-09-10",
+  "kind": "application",
+  "categories": ["web", "apps", "cloud"],
+  "stack": ["Next.js", "Supabase", "Groq", "TypeScript"],
+  "tags": ["ia", "web", "cloud"],
+  "links": {}
+}
