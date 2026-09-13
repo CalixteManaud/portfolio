@@ -1,0 +1,18 @@
+# Fins de ligne LF partout, y compris sous Windows. Biome l'exige
+# (formatter.lineEnding "lf") et la CI tourne sous Linux. Sans ce fichier,
+# core.autocrlf=true extrait les fichiers en CRLF et `pnpm biome ci` échoue en
+# local sur des fichiers pourtant corrects dans le dépôt.
+* text=auto eol=lf
+
+# Binaires : jamais de conversion de fins de ligne.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.glb binary
+*.gltf binary
