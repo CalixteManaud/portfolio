@@ -1,10 +1,16 @@
 "use client";
 
 import { MotionConfig } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   const reduced = useReducedMotion();
@@ -18,15 +24,20 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
       touchMultiplier: 1.4,
     });
 
-    let raf = 0;
-    const tick = (time: number) => {
-      lenis.raf(time);
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
+    // Lenis pilote le scroll : sans ces deux liaisons, ScrollTrigger continue
+    // de lire la position native du scroll et les sections pinnées (timeline
+    // parcours) se décalent puis saccadent.
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Un seul rAF pour tout le monde — gsap.ticker au lieu d'une boucle isolée,
+    // sinon Lenis et GSAP avancent sur deux horloges différentes.
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(raf);
+      gsap.ticker.remove(tick);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
     };
   }, [reduced]);

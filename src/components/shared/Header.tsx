@@ -1,43 +1,64 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import type { NavHref } from "@/i18n/routing";
 import { LangSwitcher } from "./LangSwitcher";
 import { MobileMenu } from "./MobileMenu";
 import { NavLink } from "./NavLink";
+import { ThemeToggle } from "./ThemeToggle";
 
-export type NavHref = "/about" | "/projects" | "/meetings" | "/contact";
+export type { NavHref } from "@/i18n/routing";
 
 export async function Header() {
-  const t = await getTranslations("Nav");
+  const [t, tl] = await Promise.all([getTranslations("Nav"), getTranslations("Landing.header")]);
 
   const navItems: Array<{ href: NavHref; label: string }> = [
+    { href: "/", label: t("home") },
     { href: "/about", label: t("about") },
+    { href: "/skills", label: t("skills") },
     { href: "/projects", label: t("projects") },
-    { href: "/meetings", label: t("meetings") },
     { href: "/contact", label: t("contact") },
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/60 backdrop-blur-md supports-backdrop-filter:bg-background/55">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
+    <header className="sticky top-0 z-40 border-b border-rule/70 bg-chalk/85 backdrop-blur-md">
+      <div className="container-page flex h-[68px] items-center justify-between gap-6">
         <Link
           href="/"
-          className="inline-flex items-center rounded-md transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
-          aria-label={t("home")}
+          aria-label={tl("homeLabel")}
+          className="flex shrink-0 items-center gap-3 rounded-md transition-opacity hover:opacity-80"
         >
+          {/* Le monogramme est noir et cuivre : en thème sombre, sa variante
+              claire prend le relais plutôt qu'un filtre qui dénaturerait le cuivre. */}
           <Image
-            src="/logo-wordmark.svg"
-            alt="~/portfolio"
-            width={130}
-            height={20}
+            src="/logo-mark.png"
+            alt=""
+            width={1070}
+            height={510}
             priority
-            className="h-5 w-auto"
-            style={{ height: "auto" }}
+            className="h-[34px] w-auto dark:hidden"
           />
+          <Image
+            src="/landing/logo-mark-light.png"
+            alt=""
+            width={1070}
+            height={510}
+            priority
+            className="hidden h-[34px] w-auto dark:block"
+          />
+          <span className="flex flex-col">
+            <span className="text-[12.5px] font-bold uppercase leading-tight tracking-[0.1em] text-ink sm:text-[14.5px] sm:tracking-[0.12em]">
+              Manaud Calixte
+            </span>
+            <span className="hidden text-[11.5px] leading-tight text-ink-soft sm:block">
+              {tl("sub")}
+            </span>
+          </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1 text-sm">
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-8">
             {navItems.map((item) => (
               <li key={item.href}>
                 <NavLink href={item.href}>{item.label}</NavLink>
@@ -48,6 +69,16 @@ export async function Header() {
 
         <div className="flex items-center gap-2">
           <LangSwitcher />
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
+          <Link
+            href="/contact"
+            className="ml-1 hidden h-10 items-center gap-2 rounded-lg bg-copper px-5 text-[14px] font-semibold text-copper-ink shadow-lift-1 transition-[background-color,transform] hover:-translate-y-px hover:bg-copper-deep sm:inline-flex"
+          >
+            {tl("cta")}
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
           <MobileMenu items={navItems} />
         </div>
       </div>

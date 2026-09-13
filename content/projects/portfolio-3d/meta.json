@@ -1,9 +1,8 @@
 {
-  "featured": true,
-  "order": 0,
+  "featured": false,
+  "order": 7,
   "publishedAt": "2026-04-01",
   "updatedAt": "2026-04-27",
-  "cover": "/images/projects/portfolio-3d-cover.jpg",
   "stack": [
     "Next.js",
     "TypeScript",
@@ -17,7 +16,9 @@
   ],
   "tags": ["3d", "devops", "i18n", "mdx", "showcase"],
   "links": {
-    "repo": "https://github.com/example/portfolio",
-    "live": "https://example.dev"
-  }
+    "repo": "https://github.com/CalixteManaud/portfolio",
+    "live": "https://portfolio.devcorporation.fr"
+  },
+  "kind": "web",
+  "categories": ["web", "devops", "security"]
 }

@@ -13,6 +13,12 @@ export const routing = defineRouting({
       es: "/recorrido",
       de: "/werdegang",
     },
+    "/skills": {
+      fr: "/competences",
+      en: "/skills",
+      es: "/competencias",
+      de: "/kompetenzen",
+    },
     "/projects": {
       fr: "/projets",
       en: "/projects",
@@ -25,25 +31,30 @@ export const routing = defineRouting({
       es: "/proyectos/[slug]",
       de: "/projekte/[slug]",
     },
-    "/meetings": {
-      fr: "/rencontres",
-      en: "/meetings",
-      es: "/encuentros",
-      de: "/begegnungen",
-    },
-    "/meetings/[slug]": {
-      fr: "/rencontres/[slug]",
-      en: "/meetings/[slug]",
-      es: "/encuentros/[slug]",
-      de: "/begegnungen/[slug]",
-    },
     "/contact": {
       fr: "/contact",
       en: "/contact",
       es: "/contacto",
       de: "/kontakt",
     },
+    "/legal": {
+      fr: "/mentions-legales",
+      en: "/legal",
+      es: "/aviso-legal",
+      de: "/impressum",
+    },
+    "/privacy": {
+      fr: "/confidentialite",
+      en: "/privacy",
+      es: "/privacidad",
+      de: "/datenschutz",
+    },
   },
 });
 
 export type AppPathnames = keyof typeof routing.pathnames;
+
+/** Les entrées de navigation principale. Définies ici, à côté des pathnames
+ *  qu'elles doivent respecter : la liste était recopiée dans trois composants,
+ *  et ajouter une route en cassait deux. */
+export type NavHref = "/" | "/about" | "/skills" | "/projects" | "/contact";

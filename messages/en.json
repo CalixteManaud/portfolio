@@ -1,53 +1,161 @@
 {
   "Meta": {
-    "title": "Portfolio — DevOps & DevSecOps",
-    "description": "DevOps / DevSecOps engineer & web developer. Projects, journey, meetings."
+    "title": "Manaud Calixte — DevOps & DevSecOps",
+    "description": "DevOps, DevSecOps and web development. This site's code is the demonstration."
   },
   "Nav": {
     "home": "Home",
     "about": "About",
+    "skills": "Skills",
     "projects": "Projects",
-    "meetings": "Meetings",
     "contact": "Contact"
   },
   "Hero": {
-    "eyebrow": "DevOps · DevSecOps · Web Developer",
-    "title": "Building systems that hold the line.",
-    "subtitle": "Automated pipelines, secure platforms, and web experiences that turn heads.",
-    "ctaProjects": "See projects",
-    "ctaContact": "Get in touch",
-    "scaffoldNotice": "🚧 Initial scaffold — 3D scene coming soon."
+    "availability": "Open to a full-time role",
+    "location": "Paris or Aix-Marseille, France · remote or on-site"
   },
   "NotFound": {
     "title": "Page not found",
-    "description": "The content you're looking for doesn't exist (anymore).",
+    "description": "That address matches no page. The content may have moved.",
     "backHome": "Back to home"
   },
   "Contact": {
     "title": "Contact",
-    "intro": "A mission, a question, a coffee? The form lands straight in my inbox.",
+    "intro": "The form lands straight in my inbox, and I answer within 48 hours. You can also write to contact@devcorporation.fr.",
     "fields": {
       "name": "Name",
-      "namePlaceholder": "Your first and last name",
+      "namePlaceholder": "Your name *",
       "email": "Email",
-      "emailPlaceholder": "you@example.com",
+      "emailPlaceholder": "Your email *",
       "subject": "Subject",
-      "subjectPlaceholder": "Your message subject",
-      "message": "Message",
-      "messagePlaceholder": "Tell me about your project…",
-      "consent": "I agree to my data being processed so you can reply to me."
+      "subjectPlaceholder": "Subject of your message *",
+      "message": "Your message",
+      "messagePlaceholder": "Tell me more about what you need, your context or your question.",
+      "consent": "I agree to my data being processed so you can reply to me.",
+      "organization": "Company",
+      "organizationPlaceholder": "Company (optional)"
     },
-    "submit": "Send",
+    "submit": "Send the message",
     "states": {
       "loading": "Sending…",
-      "success": "Message sent. Reply within 48h.",
-      "error": "Something went wrong. Try again in a moment."
+      "success": "Message sent. Answer within 48 hours.",
+      "error": "Sending failed. Try again in a moment, or write to contact@devcorporation.fr."
     },
     "errors": {
-      "rateLimited": "Too many messages. Try again in an hour.",
-      "captchaFailed": "Bot verification failed.",
-      "validation": "Check the form fields.",
-      "sendFailed": "Send failed. Try again later."
+      "rateLimited": "Too many messages from this connection. Try again in an hour, or write to contact@devcorporation.fr.",
+      "captchaFailed": "The anti-bot check did not go through. Reload the page, then try again.",
+      "validation": "Some fields are incomplete. The details are shown under each one.",
+      "sendFailed": "The message did not go out. Write directly to contact@devcorporation.fr."
+    },
+    "fieldErrors": {
+      "name": "Enter your name (at least 2 characters).",
+      "email": "Enter a valid email address.",
+      "subject": "Choose the subject of your message.",
+      "message": "Your message needs at least 10 characters.",
+      "consent": "Tick the box so I can reply to you."
+    },
+    "hero": {
+      "kicker": "/ Contact",
+      "title": "Let's talk about<br></br> what you <accent>need.</accent>",
+      "lede": "A question, an opportunity, a project? I'm always open to a conversation. Let's talk about your needs and see how I can help you make them happen.",
+      "features": [
+        {
+          "title": "Reply within 48 h",
+          "body": "In business days."
+        },
+        {
+          "title": "No-commitment chat",
+          "body": "Let's discuss what you need."
+        },
+        {
+          "title": "A virtual coffee?",
+          "body": "Always up for it."
+        }
+      ],
+      "motto": ["Discuss", "Plan", "Build", "Move forward"],
+      "quote": "Every great project starts with a simple conversation.",
+      "photoAlt": "Manaud Calixte at work",
+      "signature": "Manaud Calixte"
+    },
+    "form": {
+      "kicker": "/ Form",
+      "title": "Send me a message",
+      "intro": "Fill in the form below: I reply within 48 hours."
+    },
+    "subjects": {
+      "recruitment": "Hiring (permanent role)",
+      "mission": "Freelance contract",
+      "advice": "Technical question",
+      "hello": "Getting in touch",
+      "other": "Other"
+    },
+    "info": {
+      "kicker": "/ Details",
+      "title": "Contact details",
+      "intro": "You can also reach me directly through these channels.",
+      "labels": {
+        "email": "Email",
+        "location": "Location",
+        "website": "Website",
+        "github": "GitHub",
+        "linkedin": "LinkedIn"
+      },
+      "locationValue": "Marseille, France",
+      "copied": "Copied",
+      "copyLabel": "Copy: {label}",
+      "status": {
+        "title": "Available for a permanent role or a contract",
+        "body": "Marseille · Remote or on-site"
+      }
+    },
+    "intents": {
+      "items": [
+        {
+          "title": "Collaborative projects",
+          "body": "Have an idea? Let's build it together."
+        },
+        {
+          "title": "Career opportunities",
+          "body": "I'm open to permanent roles as well as freelance work."
+        },
+        {
+          "title": "Advice & discussion",
+          "body": "Need a technical opinion? Happy to talk."
+        },
+        {
+          "title": "Just saying hello",
+          "body": "Feel free to reach out, even just to get acquainted."
+        }
+      ]
+    },
+    "location": {
+      "kicker": "/ Location",
+      "title": "Based in Marseille<br></br> or anywhere remotely",
+      "body": "I'm based in Marseille and also work remotely, with teams across France.",
+      "note": ["Marseille", "Always further"],
+      "cta": "View on Google Maps"
+    },
+    "faq": {
+      "kicker": "/ FAQ",
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "How quickly do you reply?",
+          "a": "Within 48 hours, business days included."
+        },
+        {
+          "q": "Are you available for freelance contracts?",
+          "a": "Yes. I'm primarily looking for a permanent role, and I remain open to contracts."
+        },
+        {
+          "q": "Do you only work remotely?",
+          "a": "No: remote or on-site, in Paris, Aix-Marseille or elsewhere in France."
+        },
+        {
+          "q": "What kind of work interests you?",
+          "a": "Cloud-native infrastructure, CI/CD automation, delivery-chain security and web development."
+        }
+      ]
     }
   },
   "LangSwitcher": {
@@ -56,42 +164,656 @@
   },
   "Projects": {
     "title": "Projects",
-    "intro": "Selected projects — products, platforms, experiments.",
-    "filters": {
-      "all": "All",
-      "label": "Filter by tag"
-    },
-    "empty": "No projects match.",
+    "intro": "What I have built, and how.",
     "viewProject": "View project",
-    "links": { "repo": "Source code", "live": "Live", "docs": "Docs" },
-    "fallbackBadge": "Translation unavailable — French version shown"
-  },
-  "Meetings": {
-    "title": "Meetings",
-    "intro": "The people who left a mark.",
-    "empty": "No meetings published yet.",
-    "fallbackBadge": "Translation unavailable — French version shown"
+    "featured": "Featured",
+    "links": {
+      "repo": "Source code",
+      "live": "Live",
+      "docs": "Docs"
+    },
+    "fallbackBadge": "Translation unavailable — French version shown",
+    "hero": {
+      "kicker": "/ Projects",
+      "title": "Concrete projects<br></br> for <accent>real impact.</accent>",
+      "lede": "A selection of personal and professional projects that show my skills in DevOps, web development, cloud and automation.",
+      "stats": {
+        "projects": "projects shown",
+        "repos": "public GitHub repositories",
+        "users": "users served"
+      },
+      "usersValue": "3,000+",
+      "quote": "“From idea to deployment, it's just one commit.”",
+      "photoAlt": "Manaud Calixte working on a laptop",
+      "statsLabel": "At a glance",
+      "motto": ["Build", "Deploy", "Improve", "Repeat"],
+      "signature": "Manaud Calixte"
+    },
+    "toolbar": {
+      "filterLabel": "Filter by category",
+      "search": "Search a project…",
+      "searchLabel": "Search a project",
+      "count": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
+      "filters": {
+        "all": "All",
+        "devops": "DevOps",
+        "web": "Web development",
+        "cloud": "Cloud",
+        "security": "Security",
+        "automation": "Automation",
+        "apps": "Applications"
+      }
+    },
+    "kinds": {
+      "application": "Application",
+      "infrastructure": "Infrastructure",
+      "cicd": "CI/CD",
+      "web": "Web",
+      "enterprise": "Enterprise"
+    },
+    "noResult": {
+      "status": "search — no results",
+      "title": "No project matches.",
+      "body": "Pick another category or clear the search to see the full selection.",
+      "reset": "Show all"
+    },
+    "imagePending": "Screenshot coming",
+    "feature": {
+      "kicker": "Featured project",
+      "cta": "Read the case study",
+      "highlightsLabel": "Key points",
+      "note": ["From", "Idea", "to", "Impact"]
+    },
+    "cta": {
+      "kicker": "An opportunity in mind?",
+      "title": "Let's work together.",
+      "body": "Have an idea, a project or an opportunity? Let's talk and see how I can help make it happen.",
+      "button": "Contact me"
+    }
   },
   "About": {
     "title": "About",
-    "intro": "Steps, roles, terrains. What I learned along the way.",
+    "intro": "Who I am, how I work and the path that led here: DevOps, cloud and web development, from Marseille.",
     "present": "present",
-    "fallbackBadge": "Translation unavailable — French version shown"
+    "fallbackBadge": "Translation unavailable — French version shown",
+    "hero": {
+      "kicker": "About",
+      "title": "Who am I<accent>?</accent>",
+      "p1": "I'm <b>Manaud Calixte</b>, a DevOps consultant and developer, passionate about automation, the cloud and building reliable, scalable solutions. I like designing infrastructure that lasts, building useful applications and learning continuously.",
+      "p2": "My goal: putting technology to work for concrete impact, whether in the cloud, in web development or in integrating solutions such as Salesforce.",
+      "facts": [
+        {
+          "top": "Based in",
+          "bottom": "Marseille"
+        },
+        {
+          "top": "Available for",
+          "bottom": "a permanent role or a contract"
+        },
+        {
+          "top": "Outside of code",
+          "bottom": "basketball, tennis, weightlifting"
+        }
+      ],
+      "quote": "Technology makes sense when it solves a real problem.",
+      "signature": "Manaud Calixte",
+      "photoQuote": "Turning ideas into solutions that make an impact.",
+      "motto": ["Build", "Automate", "Secure", "Scale"],
+      "portraitAlt": "Portrait of Manaud Calixte",
+      "statsLabel": "In numbers",
+      "stats": [
+        {
+          "value": "3+",
+          "label": "years of experience"
+        },
+        {
+          "value": "3,000+",
+          "label": "users served"
+        },
+        {
+          "value": "2",
+          "label": "cloud certifications"
+        },
+        {
+          "value": "3",
+          "label": "languages · English B2"
+        }
+      ]
+    },
+    "journey": {
+      "kicker": "My journey",
+      "title": "From curiosity to expertise",
+      "intro": "A path built on a passion for technology, the will to learn and the drive to create value.",
+      "note": ["Same", "Progress", "Different", "Level"],
+      "quote": "Learn today, build tomorrow.",
+      "certifications": "Certifications"
+    },
+    "values": {
+      "kicker": "My values",
+      "title": "What guides me every day",
+      "items": {
+        "curiosity": {
+          "title": "Curiosity",
+          "body": "Always learning, always exploring new solutions."
+        },
+        "impact": {
+          "title": "Impact",
+          "body": "Building useful, lasting solutions."
+        },
+        "collaboration": {
+          "title": "Collaboration",
+          "body": "Sharing and teamwork to go further."
+        },
+        "progression": {
+          "title": "Progression",
+          "body": "1% better every day."
+        }
+      },
+      "higher": {
+        "title": "Always higher",
+        "body": "New challenges, new technologies, but the same goal: building a better future with tech.",
+        "cta": "Let's talk"
+      }
+    }
   },
   "Footer": {
-    "tagline": "Pipelines, platforms, web experiences.",
+    "tagline": "DevOps, DevSecOps, web development. From Marseille.",
     "rights": "All rights reserved.",
     "social": "Social",
+    "navigation": "Navigation",
     "legal": "Legal",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "builtWith": "Built with Next.js · React Three Fiber · MDX"
+  },
+  "Pages": {
+    "updatedAt": "Updated {date}",
+    "fallbackBadge": "Translation unavailable — French version shown",
+    "legal": {
+      "title": "Legal notice",
+      "description": "Publisher, hosting, and intellectual property for this site.",
+      "kicker": "Legal notice"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "What data is processed, why, and for how long.",
+      "kicker": "Privacy"
+    },
+    "tocLabel": "Contents",
+    "highlightsLabel": "The essentials",
+    "contactCard": {
+      "kicker": "Contact",
+      "title": "A question about this information?",
+      "body": "Write to me directly: I reply within 48 hours, on business days.",
+      "copy": "Copy the email address",
+      "copied": "Address copied",
+      "cta": "Open the form"
+    }
   },
   "MobileMenu": {
     "open": "Open menu",
     "close": "Close menu",
     "title": "Menu"
   },
-  "DevOpsShowcase": {
-    "heading": "Code is the demonstration.",
-    "subheading": "Three live proofs: a playable terminal, GitHub stats refreshed every hour, a CI/CD pipeline running in 3D."
+  "Empty": {
+    "actions": {
+      "projects": "See the projects",
+      "github": "The code on GitHub",
+      "contact": "Get in touch",
+      "clearFilters": "Clear the filter"
+    },
+    "career": {
+      "status": "career — no entry published",
+      "title": "The career timeline isn't online yet.",
+      "body": "Roles, steps and terrain will land here. In the meantime the code is the most honest version of the résumé: this site is built, deployed and scanned by the very pipeline it describes."
+    },
+    "projects": {
+      "status": "projects — none published",
+      "title": "No projects online yet.",
+      "body": "Projects are versioned in MDX and published commit by commit. The public repository stays the most current source."
+    },
+    "filter": {
+      "status": "filter — no results",
+      "title": "No project carries that tag.",
+      "body": "Clear the filter to get the full selection back."
+    },
+    "github": {
+      "status": "github — data unavailable",
+      "body": "The stats aren't responding right now. The profile still is.",
+      "action": "View the GitHub profile"
+    }
+  },
+  "Terminal": {
+    "ariaLabel": "Interactive terminal",
+    "inputLabel": "Terminal input",
+    "placeholder": "type help and press Enter…",
+    "welcome": "Welcome. Type `help` to start.",
+    "whoami": "Manaud Calixte — DevOps · DevSecOps · web developer",
+    "help": {
+      "intro": "Available commands:",
+      "rows": [
+        ["help", "show this list"],
+        ["whoami", "who's behind this site"],
+        ["ls", "list sections"],
+        ["cat <section>", "read a section (e.g. cat stack, cat certs)"],
+        ["open <path>", "navigate (e.g. open /projects)"],
+        ["clear", "clear the terminal"],
+        ["date", "current date and time"],
+        ["echo <text>", "print text"]
+      ]
+    },
+    "errors": {
+      "notFound": "{cmd}: command not found. Try `help`.",
+      "catUsage": "usage: cat <section>",
+      "catMissing": "cat: {target}: no such file",
+      "openUsage": "usage: open <path>"
+    },
+    "sections": {
+      "about": {
+        "lines": [
+          "DevOps / DevSecOps engineer and web developer.",
+          "Pipelines, hardened platforms, interfaces that take the load."
+        ]
+      },
+      "stack": {
+        "rows": [
+          ["Languages", "TypeScript, Go, Python, Bash"],
+          ["Infra", "Kubernetes, Terraform, AWS, Docker"],
+          ["CI/CD", "GitHub Actions, GitLab CI, ArgoCD"],
+          ["Security", "Trivy, Snyk, Vault, Sigstore"],
+          ["Web", "Next.js, React, R3F, Tailwind"]
+        ],
+        "footer": [
+          "This site runs on: Next.js, R3F, Docker, GitHub Actions, Trivy.",
+          "Run `cat proof` to see where."
+        ]
+      },
+      "proof": {
+        "title": "What this site demonstrates, not just claims:",
+        "rows": [
+          ["Next.js 16", "RSC, Server Actions, 4 localised routes — you're in it"],
+          ["R3F / WebGL", "the hero terrain is 52 weeks of real commit data"],
+          ["Docker", "multi-stage, non-root, read-only FS — see /Dockerfile"],
+          ["GitHub Actions", "lint, types, i18n, tests, build and scan on every push"],
+          ["Trivy", "filesystem scan in CI, results in GitHub Security"],
+          ["Zod", "every form input validated server-side"],
+          ["CSP + HSTS", "strict headers — check the response in your devtools"]
+        ],
+        "footer": ["The rest of `cat stack` is work I do; this is work you can audit."]
+      },
+      "certs": {
+        "title": "Certifications:",
+        "rows": [
+          ["Terraform Associate", "HashiCorp"],
+          ["AWS Cloud Practitioner", "Amazon Web Services"],
+          ["Agile methods", ""]
+        ],
+        "educationTitle": "Education:",
+        "education": [
+          ["2023-2025", "Master's in DevOps engineering — YNOV Aix Campus"],
+          ["2022-2023", "Bachelor in big data — IUT Aix-Marseille"]
+        ],
+        "footer": ["Languages: French (native), English (B2), Haitian Creole (B2)."]
+      },
+      "contact": {
+        "lines": ["Email: contact@devcorporation.fr", "Tip: `open /contact` opens the form."]
+      }
+    }
+  },
+  "Theme": {
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
+  },
+  "Skills": {
+    "title": "Skills",
+    "intro": "Domains, tools, certifications and languages: what I practise, and at what level.",
+    "hero": {
+      "kicker": "/ Skills",
+      "title": "Skills put to work<br></br> for <accent>impact.</accent>",
+      "lede": "A set of technical and human skills to design, deploy and maintain reliable, secure and scalable solutions.",
+      "stats": [
+        {
+          "value": "6",
+          "label": "areas of expertise"
+        },
+        {
+          "value": "20",
+          "label": "tools in practice"
+        },
+        {
+          "value": "3+",
+          "label": "years of experience"
+        },
+        {
+          "value": "Always",
+          "label": "learning"
+        }
+      ],
+      "quote": "Mastering tools is a means; solving problems is the goal.",
+      "photoAlt": "Manaud Calixte, chin in hand, in front of a laptop",
+      "statsLabel": "At a glance",
+      "motto": ["Learn", "Build", "Secure", "Scale"],
+      "signature": "Manaud Calixte"
+    },
+    "domains": {
+      "kicker": "/ Domains",
+      "title": "My areas of expertise",
+      "aside": "Complementary skills for end-to-end solutions.",
+      "toolsLabel": "Tools",
+      "items": {
+        "devops": {
+          "title": "DevOps",
+          "body": "Automation, CI/CD, Infrastructure as Code, observability."
+        },
+        "cloud": {
+          "title": "Cloud",
+          "body": "AWS, cloud-native architecture, environment management."
+        },
+        "web": {
+          "title": "Web development",
+          "body": "Next.js, TypeScript, modern high-performance applications."
+        },
+        "devsecops": {
+          "title": "DevSecOps",
+          "body": "Security, scans, hardening, best practices."
+        },
+        "data": {
+          "title": "Data & tools",
+          "body": "Data management, integrations, APIs, processing."
+        },
+        "soft": {
+          "title": "Soft skills",
+          "body": "Communication, autonomy, teamwork.",
+          "tools": ["Collaboration", "Autonomy", "Tech watch"]
+        }
+      },
+      "softLabel": "Qualities"
+    },
+    "stack": {
+      "kicker": "Stack",
+      "title": "Technologies and tools",
+      "aside": "The tools I use every day.",
+      "filterLabel": "Filter by category",
+      "count": "{count, plural, one {# tool} other {# tools}}",
+      "filters": {
+        "all": "All",
+        "cloud": "Cloud",
+        "devops": "DevOps",
+        "dev": "Development",
+        "security": "Security",
+        "monitoring": "Monitoring",
+        "data": "Databases",
+        "other": "Other"
+      }
+    },
+    "certs": {
+      "kicker": "/ Certifications",
+      "title": "Certifications",
+      "items": [
+        {
+          "name": "Terraform Associate",
+          "issuer": "HashiCorp",
+          "year": "2024"
+        },
+        {
+          "name": "AWS Cloud Practitioner",
+          "issuer": "Amazon Web Services",
+          "year": "2023"
+        },
+        {
+          "name": "Agile methods",
+          "issuer": "",
+          "year": "2023"
+        }
+      ]
+    },
+    "languages": {
+      "kicker": "/ Languages",
+      "title": "Languages",
+      "scaleLabel": "Level on the European scale (A1 to C2)",
+      "items": [
+        {
+          "code": "FR",
+          "name": "French",
+          "level": "Native",
+          "steps": 6
+        },
+        {
+          "code": "EN",
+          "name": "English",
+          "level": "B2 · advanced",
+          "steps": 4
+        },
+        {
+          "code": "HT",
+          "name": "Haitian Creole",
+          "level": "B2 · advanced",
+          "steps": 4
+        }
+      ]
+    },
+    "soft": {
+      "kicker": "/ Soft skills",
+      "title": "Soft skills",
+      "items": [
+        "Collaboration",
+        "Problem solving",
+        "Tech watch",
+        "Autonomy",
+        "Innovation",
+        "Organisation"
+      ],
+      "quote": "Solid technical skills, but above all a constant drive to learn and improve.",
+      "signature": "Manaud Calixte"
+    },
+    "next": {
+      "kicker": "Next step",
+      "title": "An opportunity in mind?",
+      "body": "Let's talk. I'm open to a permanent role as well as a contract, and I reply within 48 hours.",
+      "cta": "Contact me",
+      "note": ["Same", "Progress", "Different", "Level"]
+    }
+  },
+  "Landing": {
+    "header": {
+      "cta": "Let's talk",
+      "sub": "DevOps · DevSecOps · Web Developer",
+      "homeLabel": "Manaud Calixte — home"
+    },
+    "hero": {
+      "badge": "Available for a permanent role or a contract",
+      "title": "More reliable infrastructure for <accent>bigger ideas.</accent>",
+      "lede": "I design and build secure, high-performing cloud-native platforms, and I develop modern web experiences. DevOps, DevSecOps and web development, working for your teams.",
+      "ctaPrimary": "Let's talk",
+      "ctaSecondary": "See my projects",
+      "statsLabel": "At a glance",
+      "stats": [
+        {
+          "value": "Master's",
+          "label": "Expert DevOps degree"
+        },
+        {
+          "value": "2",
+          "label": "cloud certifications"
+        },
+        {
+          "value": "3,000+",
+          "label": "users served"
+        }
+      ],
+      "follow": "Follow me on",
+      "mail": "Send an email",
+      "annot": ["Build", "Deploy", "Learn", "Repeat"],
+      "roles": ["DevOps", "DevSecOps", "Web Developer"],
+      "tagline": "Ideas\nin production.",
+      "location": ["Based in Marseille", "Remote or on-site", "Anywhere in France"],
+      "portraitAlt": "Portrait of Manaud Calixte, dark jacket and glasses"
+    },
+    "expertise": {
+      "kicker": "Expertise",
+      "title": "My areas of expertise",
+      "aside": "Complementary skills for end-to-end solutions.",
+      "link": "See all my skills",
+      "items": {
+        "cicd": {
+          "title": "CI/CD",
+          "body": "Automated builds, tests and deployments for reliable releases."
+        },
+        "iac": {
+          "title": "Infrastructure as Code",
+          "body": "Reproducible, scalable and maintainable infrastructure."
+        },
+        "observability": {
+          "title": "Observability",
+          "body": "Monitoring, logs and metrics for more resilient systems."
+        },
+        "security": {
+          "title": "Security / DevSecOps",
+          "body": "Security built in from the design stage for reliable applications."
+        },
+        "web": {
+          "title": "Web development",
+          "body": "Modern, fast and accessible interfaces."
+        }
+      }
+    },
+    "ecosystem": {
+      "kicker": "Tools",
+      "title": "My ecosystem",
+      "aside": "Proven tools for reliable solutions."
+    },
+    "daily": {
+      "kicker": "Day to day",
+      "title": "Build, learn, share.",
+      "aside": "A few moments from my day: code, conversations and solutions in action.",
+      "prev": "Previous photo",
+      "next": "Next photo",
+      "items": {
+        "dev": {
+          "title": "Development",
+          "body": "Turning ideas into solutions",
+          "alt": "Manaud Calixte coding on a laptop"
+        },
+        "analysis": {
+          "title": "Analysis",
+          "body": "Understanding to build better",
+          "alt": "Manaud Calixte thinking, chin in hand, facing the screen"
+        },
+        "share": {
+          "title": "Sharing",
+          "body": "Passing it on and collaborating",
+          "alt": "Manaud Calixte presenting a cloud architecture diagram on a whiteboard"
+        },
+        "focus": {
+          "title": "Focus",
+          "body": "Solutions coming to life",
+          "alt": "Manaud Calixte, seen from behind, reviewing code on a large screen"
+        }
+      }
+    },
+    "journey": {
+      "kicker": "Journey",
+      "title": "My journey",
+      "aside": "A path shaped by practice, curiosity and the drive to learn.",
+      "cta": "See my full journey"
+    },
+    "projects": {
+      "kicker": "Projects",
+      "title": "Projects in the spotlight",
+      "aside": "A selection of projects that reflect my approach: concrete ideas, real impact.",
+      "cta": "See all projects",
+      "view": "View project",
+      "journey": "See in my journey",
+      "imageAlt": "The portfolio's interactive terminal",
+      "ventures": {
+        "merlio": {
+          "title": "Merlio",
+          "role": "Founder · since 2026",
+          "tags": ["Product", "Automation", "Operations"],
+          "body": "Product development and automation of critical processes, on a system I am accountable for end to end."
+        },
+        "twintable": {
+          "title": "Twintable",
+          "role": "Co-founder · since 2026",
+          "tags": ["Operations", "Coordination", "Infrastructure"],
+          "body": "Coordinating operations and systems, with the same infrastructure standards."
+        }
+      }
+    },
+    "proof": {
+      "kicker": "Proof by code",
+      "title": "The code is the demo.",
+      "aside": "Code that works, pipelines that ship, projects that come to life.",
+      "cta": "See my GitHub",
+      "tabs": {
+        "terminal": "Terminal",
+        "build": "Build",
+        "deploy": "Deploy"
+      },
+      "github": {
+        "repos": "Repositories",
+        "followers": "Followers",
+        "following": "Following",
+        "activity": "Contributions over the last 20 weeks",
+        "more": "More on GitHub",
+        "unavailable": "Activity unavailable right now."
+      },
+      "pipeline": {
+        "title": "CI/CD pipeline",
+        "env": "Production",
+        "stages": {
+          "quality": "Quality",
+          "build": "Build",
+          "security": "Security",
+          "deploy": "Deploy"
+        },
+        "success": "Last run succeeded · {when}",
+        "failure": "Last run failed · {when}",
+        "running": "Run in progress · {when}",
+        "other": "Last run · {when}",
+        "none": "No published run yet."
+      },
+      "production": {
+        "title": "In production",
+        "name": "Portfolio",
+        "online": "Online",
+        "offline": "Unreachable",
+        "unknown": "Status unknown",
+        "open": "Open the site"
+      },
+      "build": [
+        "$ git push origin main",
+        "▸ Quality — lint · types · tests",
+        "  → Biome (lint + format)",
+        "  → TypeScript",
+        "  → i18n parity · content integrity",
+        "  → Unit tests (Vitest)",
+        "▸ Build",
+        "  → next build",
+        "▸ Security audit",
+        "  → pnpm audit (production)",
+        "  → Trivy filesystem scan",
+        "# steps from .github/workflows/ci.yml"
+      ],
+      "deploy": [
+        "$ docker build -t portfolio .",
+        "  → multi-stage : deps → builder → runner",
+        "  → runtime non-root · healthcheck",
+        "$ docker compose up --build",
+        "  → read_only · cap_drop: ALL · no-new-privileges",
+        "▸ Vercel → portfolio.devcorporation.fr",
+        "# the repository's Dockerfile and docker-compose.yml"
+      ]
+    },
+    "contact": {
+      "kicker": "Contact",
+      "title": "An opportunity,\na question, a conversation?",
+      "body": "I reply within 48 hours. Describe the context in a few lines, and let's see how I can help.",
+      "cta": "Start the conversation",
+      "annot": ["Better", "solutions,", "together."],
+      "city": "Marseille, France",
+      "mode": "Remote or on-site",
+      "email": "contact@devcorporation.fr",
+      "infoLabel": "Contact details"
+    }
   }
 }

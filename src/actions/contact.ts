@@ -17,6 +17,8 @@ const localeSchema = z.enum(["fr", "en", "es", "de"]);
 const contactSchema = z.object({
   name: z.string().min(2).max(120),
   email: z.email().max(254),
+  /** Entreprise, facultative. Distincte du honeypot `company`. */
+  organization: z.string().max(160).optional().default(""),
   subject: z.string().min(2).max(200),
   message: z.string().min(10).max(5000),
   consent: z.literal(true, {
@@ -39,15 +41,12 @@ export const sendContactMessage = actionClient
   .metadata({ actionName: "sendContactMessage" })
   .inputSchema(contactSchema)
   .action(async ({ parsedInput }) => {
-    const {
-      name,
-      email,
-      subject,
-      message,
-      company,
-      turnstileToken,
-      locale,
-    } = parsedInput;
+    const { name, email, organization, subject, message, company, turnstileToken, locale } =
+      parsedInput;
+
+    // L'entreprise précède le message dans le mail reçu : le gabarit reste
+    // inchangé, et l'information arrive là où on la lit en premier.
+    const body = organization ? `Entreprise : ${organization}\n\n${message}` : message;
 
     if (company && company.length > 0) {
       // Bot tripped the honeypot — pretend success to avoid signal.
@@ -55,17 +54,10 @@ export const sendContactMessage = actionClient
     }
 
     const h = await headers();
-    const ip =
-      h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      h.get("x-real-ip") ??
-      "unknown";
+    const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? h.get("x-real-ip") ?? "unknown";
     const userAgent = h.get("user-agent") ?? undefined;
 
-    const limit = rateLimit(
-      `contact:${ip}`,
-      RATE_LIMIT_MAX,
-      RATE_LIMIT_WINDOW_MS,
-    );
+    const limit = rateLimit(`contact:${ip}`, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
     if (!limit.ok) {
       return {
         ok: false as const,
@@ -92,7 +84,7 @@ export const sendContactMessage = actionClient
           name,
           email,
           subject,
-          message,
+          message: body,
           locale,
           ip,
           userAgent,

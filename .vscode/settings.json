@@ -1,0 +1,9 @@
+{
+  // TypeScript 7 est le compilateur natif (Go) : le paquet `typescript` ne fournit
+  // plus de `tsserver.js`, seulement un binaire `tsc.exe` par plateforme. Le support
+  // TS intégré de VS Code ne peut donc pas charger la version du projet et analyserait
+  // le code avec sa propre version — d'où une divergence avec `pnpm typecheck`.
+  // L'extension TypeScriptTeam.native-preview parle au binaire natif et résout ce tsdk.
+  "typescript.experimental.useTsgo": true,
+  "typescript.native-preview.tsdk": "node_modules/typescript/lib"
+}

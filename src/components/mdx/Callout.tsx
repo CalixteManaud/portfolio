@@ -4,25 +4,25 @@ import { cn } from "@/lib/utils";
 
 type Variant = "info" | "warn" | "success" | "tip";
 
-const variants: Record<
-  Variant,
-  { icon: typeof Info; classes: string }
-> = {
+/** Chaque variante tire ses couleurs des tokens du design system, jamais de la
+ *  palette Tailwind par défaut : `warn` reprend l'ambre signal, qui est
+ *  précisément la couleur d'avertissement dont l'identité du site est tirée. */
+const variants: Record<Variant, { icon: typeof Info; classes: string }> = {
   info: {
     icon: Info,
-    classes: "border-sky-500/40 bg-sky-500/10 text-sky-100",
+    classes: "border-steel/40 bg-steel/10",
   },
   warn: {
     icon: AlertTriangle,
-    classes: "border-amber-500/40 bg-amber-500/10 text-amber-100",
+    classes: "border-copper/40 bg-copper/10",
   },
   success: {
     icon: CheckCircle2,
-    classes: "border-emerald-500/40 bg-emerald-500/10 text-emerald-100",
+    classes: "border-go/40 bg-go/10",
   },
   tip: {
     icon: Lightbulb,
-    classes: "border-violet-500/40 bg-violet-500/10 text-violet-100",
+    classes: "border-depth/50 bg-depth/10",
   },
 };
 
@@ -35,12 +35,7 @@ type Props = {
 export function Callout({ variant = "info", title, children }: Props) {
   const { icon: Icon, classes } = variants[variant];
   return (
-    <aside
-      className={cn(
-        "my-6 flex gap-3 rounded-lg border px-4 py-3 text-sm",
-        classes,
-      )}
-    >
+    <aside className={cn("my-6 flex gap-3 rounded-lg border px-4 py-3 text-sm", classes)}>
       <Icon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
       <div className="space-y-1">
         {title ? <p className="font-semibold">{title}</p> : null}

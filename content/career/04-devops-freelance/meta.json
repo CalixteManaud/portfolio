@@ -1,0 +1,10 @@
+{
+  "slug": "04-devops-freelance",
+  "role": "Développeur & consultant DevOps",
+  "company": "Freelance",
+  "startDate": "2025-01-01",
+  "location": "Marseille · remote",
+  "stack": ["GitLab CI", "Jenkins", "Terraform", "Kubernetes", "Prometheus", "Grafana"],
+  "order": 3,
+  "featured": false
+}

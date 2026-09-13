@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type Locale, localeFlags, localeNames, locales } from "@/i18n/config";
+import { type Locale, localeNames, locales } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 export function LangSwitcher() {
@@ -41,8 +41,7 @@ export function LangSwitcher() {
           className="h-9 gap-1.5 px-2.5 font-medium"
         >
           <Globe className="size-4" aria-hidden="true" />
-          <span aria-hidden="true">{localeFlags[currentLocale]}</span>
-          <span className="uppercase">{currentLocale}</span>
+          <span className="font-mono uppercase">{currentLocale}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-44">
@@ -59,7 +58,7 @@ export function LangSwitcher() {
               aria-current={active ? "true" : undefined}
               className="gap-2"
             >
-              <span aria-hidden="true">{localeFlags[loc]}</span>
+              <span className="font-mono text-[10px] uppercase text-muted-foreground">{loc}</span>
               <span className="flex-1">{localeNames[loc]}</span>
               {active ? <Check className="size-4 text-primary" aria-hidden="true" /> : null}
             </DropdownMenuItem>

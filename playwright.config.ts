@@ -9,6 +9,9 @@ export default defineConfig({
   reporter: "html",
   use: {
     baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3000",
+    // Les tests lisent les libellés français : sans locale forcée, next-intl
+    // suit l'Accept-Language du navigateur de test et redirige vers /en.
+    locale: "fr-FR",
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

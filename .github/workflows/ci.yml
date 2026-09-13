@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
   security-events: write
+  # Lecture seule : l'action CodeQL lit l'exécution en cours pour sa télémétrie
+  # (sinon, avertissement « Resource not accessible by integration »).
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,8 +19,12 @@ concurrency:
 
 env:
   NODE_VERSION: "22"
-  PNPM_VERSION: "9.15.0"
+  # La version de pnpm n'est pas fixée ici : pnpm/action-setup lit le champ
+  # "packageManager" de package.json. La déclarer aussi dans ce fichier fait
+  # échouer l'action dès que les deux versions divergent.
 
+# Actions en versions majeures qui tournent sur Node 24 : les versions
+# précédentes (runtime Node 20) déclenchent l'avertissement de dépréciation.
 jobs:
   # ---------------------------------------------------------------------------
   # Lint, typecheck, unit tests, content/i18n integrity
@@ -27,13 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -66,13 +71,11 @@ jobs:
     timeout-minutes: 15
     needs: quality
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -97,13 +100,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -115,7 +116,8 @@ jobs:
         continue-on-error: true
 
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@master
+        # Épinglé sur une version publiée plutôt que sur la branche master.
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -125,8 +127,43 @@ jobs:
           output: trivy-results.sarif
           exit-code: "0"
 
+      # Les étapes suivantes ne tournent que si Trivy a produit son rapport :
+      # quand une étape précédente échoue, elles n'ajoutent pas d'erreur trompeuse.
+
+      - name: Résumé Trivy dans la page de l'exécution
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        # Informatif : une erreur de mise en forme ne doit pas faire échouer la CI.
+        continue-on-error: true
+        run: |
+          count=$(jq '[.runs[].results[]] | length' trivy-results.sarif)
+          {
+            echo "## Trivy : vulnérabilités HIGH et CRITICAL"
+            echo
+            if [ "$count" -eq 0 ]; then
+              echo "Aucune vulnérabilité HIGH ou CRITICAL corrigeable."
+            else
+              echo "$count résultat(s)."
+              echo
+              echo "| Règle | Niveau | Fichier | Détail |"
+              echo "|---|---|---|---|"
+              jq -r '.runs[].results[] | "| \(.ruleId) | \(.level // "") | \(.locations[0].physicalLocation.artifactLocation.uri // "") | \((.message.text // "") | split("\n")[0] | gsub("\\|"; "/")) |"' trivy-results.sarif
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Rapport Trivy en artefact
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: trivy-results
+          path: trivy-results.sarif
+          retention-days: 14
+
       - name: Upload Trivy results to GitHub Security
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        # Le code scanning n'existe que sur un dépôt public, ou privé avec
+        # GitHub Code Security (payant). Il s'active dans Settings → Code
+        # security, puis avec la variable de dépôt CODE_SCANNING_ENABLED=true
+        # (Settings → Secrets and variables → Actions → Variables).
+        if: always() && hashFiles('trivy-results.sarif') != '' && vars.CODE_SCANNING_ENABLED == 'true'
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif

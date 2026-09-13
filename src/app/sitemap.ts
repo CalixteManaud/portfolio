@@ -10,13 +10,27 @@ type LocalizedPath = Record<Locale, string>;
 const STATIC_PATHS: Record<string, LocalizedPath> = {
   home: { fr: "/", en: "/", es: "/", de: "/" },
   about: { fr: "/parcours", en: "/about", es: "/recorrido", de: "/werdegang" },
+  skills: { fr: "/competences", en: "/skills", es: "/competencias", de: "/kompetenzen" },
   projects: { fr: "/projets", en: "/projects", es: "/proyectos", de: "/projekte" },
-  meetings: { fr: "/rencontres", en: "/meetings", es: "/encuentros", de: "/begegnungen" },
   contact: { fr: "/contact", en: "/contact", es: "/contacto", de: "/kontakt" },
+  legal: {
+    fr: "/mentions-legales",
+    en: "/legal",
+    es: "/aviso-legal",
+    de: "/impressum",
+  },
+  privacy: {
+    fr: "/confidentialite",
+    en: "/privacy",
+    es: "/privacidad",
+    de: "/datenschutz",
+  },
 };
 
+/** Pages de service : indexables mais sans valeur de référencement. */
+const LOW_PRIORITY = new Set(["legal", "privacy"]);
+
 const PROJECT_BASE: LocalizedPath = STATIC_PATHS.projects as LocalizedPath;
-const MEETING_BASE: LocalizedPath = STATIC_PATHS.meetings as LocalizedPath;
 
 function urlFor(locale: Locale, pathname: string): string {
   const prefix = locale === defaultLocale ? "" : `/${locale}`;
@@ -32,10 +46,7 @@ function localesMap(pathByLocale: LocalizedPath): Record<string, string> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [projectSlugs, meetingSlugs] = await Promise.all([
-    listSlugs("projects"),
-    listSlugs("meetings"),
-  ]);
+  const projectSlugs = await listSlugs("projects");
 
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
@@ -46,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: urlFor(defaultLocale, paths[defaultLocale]),
       lastModified: now,
       changeFrequency: key === "home" ? "weekly" : "monthly",
-      priority: key === "home" ? 1.0 : 0.7,
+      priority: key === "home" ? 1.0 : LOW_PRIORITY.has(key) ? 0.2 : 0.7,
       alternates: { languages: localesMap(paths) },
     });
   }
@@ -63,22 +74,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
-      alternates: { languages: localesMap(paths) },
-    });
-  }
-
-  for (const slug of meetingSlugs) {
-    const paths: LocalizedPath = {
-      fr: `${MEETING_BASE.fr}/${slug}`,
-      en: `${MEETING_BASE.en}/${slug}`,
-      es: `${MEETING_BASE.es}/${slug}`,
-      de: `${MEETING_BASE.de}/${slug}`,
-    };
-    entries.push({
-      url: urlFor(defaultLocale, paths[defaultLocale]),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
       alternates: { languages: localesMap(paths) },
     });
   }

@@ -8,8 +8,10 @@ test.describe("smoke", () => {
 
   test("contact page renders the form", async ({ page }) => {
     await page.goto("/contact");
-    await expect(page.getByLabel(/nom/i)).toBeVisible();
-    await expect(page.getByLabel(/email/i)).toBeVisible();
+    // Par rôle : la page porte aussi un bouton « Copier : Email » et un lien
+    // « Email » (coordonnées, pied de page), qu'un simple getByLabel confondrait.
+    await expect(page.getByRole("textbox", { name: /^nom$/i })).toBeVisible();
+    await expect(page.getByRole("textbox", { name: /^email$/i })).toBeVisible();
   });
 
   test("about page renders timeline header", async ({ page }) => {

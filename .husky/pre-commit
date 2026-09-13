@@ -1,1 +1,4 @@
-pnpm lint-staged
+# --max-arg-length : sous Windows, cmd.exe refuse une ligne de plus de 8191
+# caractères. Au-delà de 7000, lint-staged découpe la liste des fichiers en
+# plusieurs appels à Biome au lieu d'un seul appel trop long.
+pnpm lint-staged --max-arg-length 7000

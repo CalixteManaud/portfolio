@@ -54,3 +54,22 @@ test-results/
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Ce projet utilise pnpm (voir "packageManager" dans package.json).
+# Un lockfile npm ou yarn ici signifie qu'une commande npm/yarn a ete lancee
+# par erreur : il divergerait de pnpm-lock.yaml et fausserait la CI.
+package-lock.json
+yarn.lock
+
+# impeccable — journaux de session du mode live (le reste de .impeccable/ est versionne)
+.impeccable/live/
+
+# Maquettes du propriétaire et diffs de fidélité : les maquettes portent en
+# pixels des coordonnées privées (téléphone, adresse personnelle) que le site
+# ne publie pas, et les diffs en recopient des morceaux. Ils restent en local.
+.impeccable/mocks/
+.impeccable/review/**/diff/
+
+# Plaques de la chaîne de construction impeccable (copies de travail des
+# rasters servis depuis public/ ; la provenance est inscrite dans chaque fichier).
+/assets/plates/

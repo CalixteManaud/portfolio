@@ -10,7 +10,7 @@
  * Note: this script is intentionally tolerant during early scaffold (when
  * /content/ doesn't exist yet). The CI workflow uses continue-on-error.
  */
-import { access, readFile, readdir, stat } from "node:fs/promises";
+import { access, readdir, readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 
 const ROOT = process.cwd();
@@ -18,7 +18,7 @@ const CONTENT_DIR = join(ROOT, "content");
 const PUBLIC_DIR = join(ROOT, "public");
 const DEFAULT_LOCALE = "fr";
 const LOCALES = ["fr", "en", "es", "de"] as const;
-const KINDS = ["projects", "meetings", "career"] as const;
+const KINDS = ["projects", "career", "pages"] as const;
 
 let warnings = 0;
 let errors = 0;
@@ -75,7 +75,7 @@ async function checkSlug(kind: string, slug: string) {
   }
 
   // Cover image existence (if referenced)
-  const cover = meta["cover"];
+  const cover = meta.cover;
   if (typeof cover === "string" && cover.startsWith("/")) {
     const coverPath = join(PUBLIC_DIR, cover);
     if (!(await exists(coverPath))) {

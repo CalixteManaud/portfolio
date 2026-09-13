@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    // Requis : le projet utilise TypeScript 7 (compilateur natif Go). Sans cette
+    // extension, VS Code retombe sur sa version TS intégrée et affiche des erreurs
+    // qui n'existent pas dans `pnpm typecheck`.
+    "TypeScriptTeam.native-preview",
+    // Linter + formateur du projet (remplace ESLint + Prettier).
+    "biomejs.biome"
+  ]
+}

@@ -1,19 +1,22 @@
 # syntax=docker/dockerfile:1.7
 # =============================================================================
-# Multi-stage Dockerfile for Next.js 15 (standalone output)
+# Multi-stage Dockerfile for Next.js (standalone output)
 # - deps:    install only what's needed to install (lockfile + manifests)
 # - builder: install dev deps, build, prune
 # - runner:  minimal runtime, non-root user, healthcheck
 # =============================================================================
 
 ARG NODE_VERSION=22-alpine
-ARG PNPM_VERSION=9.15.0
 
 # -----------------------------------------------------------------------------
 # Base — pnpm via corepack
+# La version de pnpm vient du champ "packageManager" de package.json, comme en
+# CI : corepack la résout dès que pnpm tourne dans /app. Une version fixée ici
+# finirait par diverger de celle du projet.
 # -----------------------------------------------------------------------------
 FROM node:${NODE_VERSION} AS base
-RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable
 WORKDIR /app
 
 # -----------------------------------------------------------------------------

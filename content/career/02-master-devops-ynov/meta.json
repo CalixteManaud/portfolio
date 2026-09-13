@@ -1,0 +1,12 @@
+{
+  "slug": "02-master-devops-ynov",
+  "role": "Master 2 — Expert DevOps",
+  "company": "YNOV Aix Campus",
+  "startDate": "2023-09-01",
+  "endDate": "2025-09-01",
+  "location": "Aix-en-Provence",
+  "stack": ["Terraform", "Kubernetes", "Prometheus", "Grafana"],
+  "order": 1,
+  "featured": false,
+  "certifications": ["Terraform Associate", "AWS Cloud Practitioner"]
+}

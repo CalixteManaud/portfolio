@@ -1,172 +1,188 @@
-# Calixte Manaud — Portfolio Design System
+# Portfolio — Calixte Manaud
 
-Personal portfolio design system for **Calixte Manaud**, a DevOps / DevSecOps / Web Developer.
+Portfolio personnel de **Calixte Manaud** (DevOps · DevSecOps · développeur web).
+Site statique multilingue, contenu en MDX versionné, scène 3D dont le relief est de la donnée réelle.
 
-## Sources
+Le parti pris : le site ne liste pas des compétences, il les prouve. Terminal jouable, statistiques GitHub
+en direct, pipeline CI/CD en 3D, en-têtes de sécurité, conteneur non-root — chaque élément est une
+démonstration exécutable.
 
-- **GitHub repository:** https://github.com/CalixteManaud/portfolio (Next.js 15, App Router, TypeScript)
-- **Globals CSS:** `src/styles/globals.css` — Tailwind v4 @theme block; all tokens defined here
-- **Copy / i18n:** `messages/fr.json`, `en.json`, `es.json`, `de.json`
-- **Components:** `src/components/` — shared (Header, Footer), sections (Hero, ProjectCard, ContactForm…), ui (shadcn/Button)
-- **CLAUDE.md:** Full architecture brief in repo root
-
----
-
-## Product Overview
-
-Single-page portfolio presenting Calixte as a DevOps/DevSecOps expert and web developer. The site is:
-- **Interactive 3D** — Three.js / React Three Fiber hero scene
-- **MDX-driven** — projects, career timeline, meetings all authored in MDX
-- **Multilingual** — FR (default), EN, ES, DE via next-intl
-- **Dark-mode first** — no light mode defined in the codebase
-
-**Sections:**
-1. **Hero** — full-viewport 3D scene, headline, two CTAs
-2. **Parcours** — horizontal pinned GSAP timeline of career steps
-3. **Projets** — filterable grid of project cards
-4. **Rencontres** — narrative cards about notable encounters
-5. **Contact** — Resend-backed form with Turnstile anti-bot
+**Production :** https://portfolio.devcorporation.fr
 
 ---
 
-## CONTENT FUNDAMENTALS
+## Documents de référence
 
-**Language:** French-first. All nav labels are lowercase ("parcours", "projets", "rencontres"). Translated to EN/ES/DE.
-
-**Tone:** Technical, concise, first-person implied. No exclamation marks in UI copy. Direct and confident.
-- ✅ "Construire des systèmes qui tiennent debout."
-- ✅ "Pipelines automatisés, plateformes sécurisées, expériences web qui en mettent plein la vue."
-- ✅ "Une mission, une question, un café ?"
-- ❌ No marketing fluff, no superlatives
-
-**Person:** First-person singular ("mon projet", "ma boîte mail"). Speaks TO the user with "tu" ("Raconte-moi ton projet…", "Ton prénom et nom").
-
-**Casing:** Sentence case for headings and UI labels. Nav items lowercase. Section eyebrows ALL CAPS with wide letter-spacing.
-
-**Emoji:** Used once in footer footer ("❤️") and scaffold notices — not in production UI.
-
-**Numbers/stats:** Used sparingly. No fake metrics or filler data.
+| Fichier | Rôle |
+|---|---|
+| [`PRODUCT.md`](./PRODUCT.md) | Vérité produit durable : audience, positionnement, contraintes, preuves disponibles |
+| [`DESIGN.md`](./DESIGN.md) | Système visuel : tokens, typographie, layout, composants, règles nommées |
+| [`.impeccable/design.json`](./.impeccable/design.json) | Sidecar du système visuel : rampes tonales, ombres, motion, composants en HTML/CSS autonome |
+| [`CLAUDE.md`](./CLAUDE.md) | Briefing d'architecture pour Claude Code |
+| [`.claude/skills/`](./.claude/skills/) | Skills projet : 3D, animations, i18n, contenu, showcase DevOps |
 
 ---
 
-## VISUAL FOUNDATIONS
+## Stack
 
-### Colors
-Dark-mode only. Background is near-black with a subtle blue hue (hue 270°):
-- **Background:** `oklch(0.13 0.01 270)` — very dark navy-black
-- **Foreground:** `oklch(0.96 0.01 270)` — off-white, slightly blue-tinted
-- **Muted (card bg):** `oklch(0.22 0.01 270)` — dark elevated surface
-- **Muted foreground:** `oklch(0.65 0.02 270)` — secondary text
-- **Border:** `oklch(0.25 0.01 270)` — subtle divider
-- **Accent (blue):** `oklch(0.72 0.18 250)` — primary interactive color, a bright perceptual blue
+**Core** — Next.js 16 (App Router, RSC, Server Actions) · React 19 · TypeScript strict
+**UI** — Tailwind CSS v4 · shadcn/ui (style `radix-nova`) · Radix UI · lucide-react
+**3D & motion** — Three.js · React Three Fiber · Drei · @react-three/postprocessing · Framer Motion · GSAP · Lenis
+**Contenu** — MDX via `next-mdx-remote/rsc` · gray-matter · rehype-pretty-code (Shiki) · remark-gfm
+**i18n** — next-intl · FR (défaut) / EN / ES / DE, pathnames localisés
+**Contact** — Server Action + Zod + next-safe-action · Cloudflare Turnstile · Resend · react-email
+**Observabilité** — Sentry · Vercel Analytics · Speed Insights
+**Outillage** — Biome · Vitest · Playwright · Husky + lint-staged · GitHub Actions · Docker · Trivy
 
-### Typography
-- **Sans (UI):** Geist Sans — clean, modern, slightly geometric. Variable font.
-- **Mono (code/labels):** Geist Mono — used for the logo (`~/portfolio`), nav section labels, stack badges, terminal elements.
-- No serif font in use.
-
-**Type scale:**
-- Hero h1: `text-5xl`→`text-7xl`, `font-bold`, `leading-[1.05]`
-- Section titles: `text-3xl`, `font-bold`
-- Body: `text-base`–`text-lg`, `leading-relaxed`
-- Eyebrows: `text-sm uppercase tracking-[0.25em]`
-- Small labels: `text-xs`–`text-[11px]`, `font-mono`, `uppercase tracking-wider`
-
-### Spacing
-- Container max-width: `max-w-6xl` with `px-4 md:px-6`
-- Responsive horizontal padding: `clamp(1rem, 4vw, 3rem)` via `.container-px`
-- Section padding: `py-12`–`py-24`
-- Card padding: `p-6`
-- Gap between elements: `gap-4`–`gap-10`
-
-### Backgrounds & Surfaces
-- Page background: flat dark `oklch(0.13 0.01 270)` — no texture or gradient
-- Cards: `bg-card/40 backdrop-blur-sm` — semi-transparent with blur
-- Header/Footer: `bg-background/40 backdrop-blur-md` — more blur
-- Hero: vignette gradient `from-background/30 via-transparent to-background/80` over 3D scene
-- No full-bleed images, no repeating textures, no decorative gradients
-
-### Borders & Radii
-- Default border: `border-border/40`–`border-border/60` (subtle opacity)
-- Hover border: `hover:border-primary/50` — accent blue at 50%
-- Radius scale: `sm=0.25rem`, `md=0.5rem`, `lg=0.75rem`
-- Cards: `rounded-2xl` (1rem)
-- Buttons: `rounded-md` (0.5rem) → `rounded-lg` (0.75rem)
-- Icon buttons: `rounded-lg`
-- Badges: `rounded-full` (pill)
-
-### Shadows
-- Hero CTA shadow: `shadow-lg shadow-primary/20` — colored shadow matching accent
-- No card drop shadows — blur + border used instead
-
-### Animations
-- **Framer Motion:** hover/tap/layout/page transitions
-- **GSAP + ScrollTrigger:** career timeline (horizontal pinned)
-- **Three.js:** hero scene continuous render
-- **Lenis:** smooth scroll global
-- `prefers-reduced-motion` respected — all animations disabled
-- Subtle: no bouncy spring physics, no dramatic zooms. Easing is smooth and restrained.
-
-### Hover / Press States
-- Links: `text-foreground/70 → text-foreground` (opacity bump)
-- Cards: `border-primary/50 + bg-card/60` (border lights up + background lifts slightly)
-- Icon buttons: `hover:border-primary/50 hover:text-primary`
-- Buttons (primary): `hover:opacity-90`
-- Arrow icons: `group-hover:translate-x-0.5 group-hover:-translate-y-0.5` (subtle diagonal nudge)
-- Active/press: `active:translate-y-px` (1px sink)
-
-### Cards
-- Shape: `rounded-2xl`
-- Background: `bg-card/40 backdrop-blur-sm`
-- Border: `border-border`, hover → `border-primary/50`
-- Padding: `p-6`
-- No drop shadow
-
-### Imagery / Color Vibe
-- No decorative images in the codebase (scaffold state)
-- OG images generated dynamically via `@vercel/og`
-- 3D scene provides all visual interest in hero — lazy-loaded `.glb` models
-- Color vibe: cool, dark, blue-shifted
-
-### Iconography
-See ICONOGRAPHY section below.
+Aucune base de données, aucune authentification. Le dépôt Git est la source de vérité du contenu.
 
 ---
 
-## ICONOGRAPHY
+## Démarrage
 
-**Icon library:** `lucide-react` (default) + `@icons-pack/react-simple-icons` (brand logos).
-- Lucide: outline style, 16×16 default (`size-4`), stroked, no fill
-- Simple Icons: brand SVG logos (GitHub, etc.)
-- Custom SVG: `LinkedinIcon` at `src/components/icons/LinkedinIcon.tsx`
-- No icon font, no PNG icons, no emoji as icons
-- Usage: always `aria-hidden="true"` on decorative icons; `aria-label` on icon-only buttons
+```bash
+pnpm install
+cp .env.example .env.local   # puis renseigner les clés
+pnpm dev                     # http://localhost:3000
+```
 
-**Icons in use:**
-- `ArrowUpRight` (Lucide) — project card CTA
-- `Mail`, `Rss` (Lucide) — social links
-- `SiGithub` (Simple Icons) — GitHub social
-- `LinkedinIcon` (custom SVG) — LinkedIn social
-- No icon assets to copy (all via npm)
+Le site démarre sans aucune clé : le formulaire de contact et le dashboard GitHub dégradent proprement,
+et la scène 3D retombe sur un relief procédural en l'absence de `GITHUB_TOKEN`.
 
 ---
 
-## File Index
+## Commandes
 
-| File | Description |
-|------|-------------|
-| `README.md` | This file — full design system documentation |
-| `colors_and_type.css` | CSS custom properties: colors, type, spacing, radii |
-| `SKILL.md` | Claude Code skill manifest |
-| `preview/` | Design system card previews (register in DS tab) |
-| `ui_kits/portfolio/` | High-fidelity portfolio UI kit |
-| `ui_kits/portfolio/index.html` | Interactive portfolio prototype |
+```bash
+# Développement
+pnpm dev                    # serveur de dev (Turbopack)
+pnpm build                  # build de production
+pnpm start                  # serveur de production
+
+# Qualité
+pnpm lint                   # Biome lint
+pnpm format                 # Biome format
+pnpm check                  # Biome lint + format, avec écriture
+pnpm typecheck              # tsc --noEmit
+pnpm test                   # Vitest
+pnpm test:e2e               # Playwright
+pnpm audit:security         # pnpm audit --prod (Trivy tourne en CI)
+
+# Contenu & i18n
+pnpm i18n:check             # parité des clés entre fr/en/es/de
+pnpm content:check          # chaque slug a ses 4 locales + un meta.json valide
+
+# Docker
+docker compose up --build   # image de production, en local
+docker build -t portfolio . # build de l'image seule
+```
 
 ---
 
-## UI Kits
+## Variables d'environnement
 
-### Portfolio Website (`ui_kits/portfolio/`)
-Full-fidelity click-through prototype of the portfolio site.
-- `index.html` — main interactive prototype (Hero → Projets → Contact)
-- Core screens: Hero, Projects grid, Project detail, Contact form, About/Parcours
+Toutes documentées dans [`.env.example`](./.env.example), validées par Zod au démarrage
+(`src/lib/env.ts`). Aucun secret n'est commité.
+
+| Variable | Rôle |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | URL canonique, base des métadonnées et du sitemap |
+| `RESEND_API_KEY` · `CONTACT_EMAIL_FROM` · `CONTACT_EMAIL_TO` | Envoi du formulaire de contact |
+| `TURNSTILE_SECRET_KEY` · `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Anti-bot Cloudflare |
+| `GITHUB_TOKEN` · `GITHUB_USERNAME` | Dashboard live et relief du hero (fine-grained, lecture seule) |
+| `SENTRY_DSN` · `SENTRY_ORG` · `SENTRY_PROJECT` · `SENTRY_AUTH_TOKEN` | Erreurs et performance |
+| `NEXT_PUBLIC_POSTHOG_KEY` · `NEXT_PUBLIC_POSTHOG_HOST` | Analytics produit (optionnel) |
+
+---
+
+## Structure
+
+```
+content/                    # Source de vérité éditoriale (MDX)
+  projects/[slug]/          #   meta.json + fr|en|es|de.mdx
+  career/[id]/
+  meetings/[slug]/
+  pages/[slug]/             #   mentions légales, confidentialité
+messages/                   # Traductions d'interface (next-intl)
+src/
+  app/[locale]/             # Routes localisées
+  app/api/                  # OG images, stats GitHub
+  actions/                  # Server Actions (contact)
+  components/
+    3d/                     # Scènes R3F, effets, canvas
+    animations/             # Reveal, SplitTextReveal, TiltCard
+    devops/                 # Terminal, GitHubDashboard, CIPipeline3D
+    mdx/                    # Composants MDX (Callout, CodeBlock)
+    sections/               # Sections de page
+    shared/                 # Header, Footer, LangSwitcher, MobileMenu
+    ui/                     # Primitives shadcn
+  i18n/                     # Locales, routing, navigation
+  lib/                      # content, env, github, rate-limit, resend, utils
+  styles/globals.css        # Source unique des tokens de design
+tests/                      # unit (Vitest) · e2e (Playwright)
+scripts/                    # check-i18n, check-content
+```
+
+---
+
+## Ajouter du contenu
+
+Chaque entité est un dossier contenant un `meta.json` (métadonnées non traduisibles) et un fichier MDX
+par locale :
+
+```
+content/projects/mon-projet/
+  meta.json
+  fr.mdx   en.mdx   es.mdx   de.mdx
+```
+
+Si une locale manque, la version française est servie avec un badge « traduction non disponible ».
+`pnpm content:check` vérifie la complétude avant commit.
+
+---
+
+## Design
+
+Le système visuel complet est dans [`DESIGN.md`](./DESIGN.md). En résumé :
+
+- **Ardoise froide** (hue 235) en fond, jamais du noir pur — le site est nativement sombre, il n'y a pas
+  de thème clair
+- **Ambre Sodium** `oklch(0.78 0.16 68)` comme unique accent de marque, sous ~10 % de la surface d'un écran
+- Trois faces à rôles étanches : **Archivo** (`wdth 112`) pour la signalétique, **IBM Plex Sans** pour la
+  lecture, **IBM Plex Mono** pour la donnée
+- Surfaces plates au repos ; les lueurs répondent à un état, elles ne décorent pas
+
+Les douze primitives de couleur du bloc `:root` de `src/styles/globals.css` sont la seule définition de
+couleur du projet — y compris pour les shaders, qui les lisent au runtime.
+
+---
+
+## Qualité
+
+Objectifs tenus par la CI et vérifiés avant déploiement :
+
+- Lighthouse ≥ 95 sur les quatre catégories
+- WCAG 2.1 AA — navigation clavier complète, `prefers-reduced-motion` respecté partout, alternative
+  accessible à chaque scène 3D
+- Chargement initial < 2 s hors 3D (lazy-loadée), < 200 KB de JS initial
+- 60 fps sur mobile moyen de gamme
+
+**CI** (`.github/workflows/ci.yml`) : Biome → TypeScript → parité i18n → intégrité du contenu → tests
+unitaires → build → `pnpm audit --prod` + scan Trivy remonté dans GitHub Security.
+
+---
+
+## Déploiement
+
+**Vercel** en principal. Le [`Dockerfile`](./Dockerfile) multi-stage (sortie `standalone`, utilisateur
+non-root, healthcheck) permet un déploiement sur Railway, Fly.io ou auto-hébergé sans changement de code.
+
+---
+
+## Sécurité
+
+- CSP stricte, HSTS, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` via `next.config.ts`
+- Tous les inputs validés côté serveur par Zod, Server Actions typées via `next-safe-action`
+- Rate-limit in-memory sur le formulaire (3 envois/heure/IP) + Turnstile en amont
+- `GITHUB_TOKEN` fine-grained en lecture seule, jamais exposé au client
+- Trivy et Dependabot dans la CI, `pnpm audit --prod` avant déploiement

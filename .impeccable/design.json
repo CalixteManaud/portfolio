@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-09T00:00:00.000Z",
+  "title": "Design System: L'Établi — Portfolio Calixte Manaud",
+  "extensions": {
+    "colorMeta": {
+      "copper": {
+        "role": "primary",
+        "displayName": "Cuivre",
+        "canonical": "oklch(0.675 0.097 64.9)",
+        "canonicalDark": "oklch(0.760 0.105 66.0)",
+        "tonalRamp": [
+          "oklch(0.20 0.04 64.9)",
+          "oklch(0.30 0.06 64.9)",
+          "oklch(0.40 0.075 64.9)",
+          "oklch(0.50 0.085 64.9)",
+          "oklch(0.60 0.095 64.9)",
+          "oklch(0.675 0.097 64.9)",
+          "oklch(0.78 0.075 64.9)",
+          "oklch(0.90 0.045 64.9)"
+        ]
+      },
+      "board": {
+        "role": "neutral",
+        "displayName": "Plan de travail",
+        "canonical": "oklch(0.927 0.018 81.3)",
+        "canonicalDark": "oklch(0.205 0.012 62.0)",
+        "tonalRamp": [
+          "oklch(0.18 0.010 81.3)",
+          "oklch(0.30 0.012 81.3)",
+          "oklch(0.45 0.014 81.3)",
+          "oklch(0.60 0.016 81.3)",
+          "oklch(0.75 0.017 81.3)",
+          "oklch(0.86 0.018 81.3)",
+          "oklch(0.927 0.018 81.3)",
+          "oklch(0.97 0.010 81.3)"
+        ]
+      },
+      "board-sunk": {
+        "role": "neutral",
+        "displayName": "Plan de travail en retrait",
+        "canonical": "oklch(0.895 0.020 81.0)",
+        "canonicalDark": "oklch(0.165 0.010 62.0)",
+        "tonalRamp": [
+          "oklch(0.16 0.010 81.0)",
+          "oklch(0.28 0.013 81.0)",
+          "oklch(0.42 0.015 81.0)",
+          "oklch(0.57 0.017 81.0)",
+          "oklch(0.72 0.019 81.0)",
+          "oklch(0.83 0.020 81.0)",
+          "oklch(0.895 0.020 81.0)",
+          "oklch(0.96 0.012 81.0)"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Craie",
+        "canonical": "oklch(0.980 0.006 84.6)",
+        "canonicalDark": "oklch(0.255 0.013 62.0)",
+        "tonalRamp": [
+          "oklch(0.20 0.006 84.6)",
+          "oklch(0.33 0.006 84.6)",
+          "oklch(0.47 0.006 84.6)",
+          "oklch(0.61 0.006 84.6)",
+          "oklch(0.75 0.006 84.6)",
+          "oklch(0.87 0.006 84.6)",
+          "oklch(0.94 0.006 84.6)",
+          "oklch(0.980 0.006 84.6)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Encre",
+        "canonical": "oklch(0.180 0.008 67.3)",
+        "canonicalDark": "oklch(0.945 0.008 84.0)",
+        "tonalRamp": [
+          "oklch(0.10 0.006 67.3)",
+          "oklch(0.180 0.008 67.3)",
+          "oklch(0.28 0.008 67.3)",
+          "oklch(0.40 0.009 67.3)",
+          "oklch(0.55 0.009 67.3)",
+          "oklch(0.70 0.010 67.3)",
+          "oklch(0.85 0.010 67.3)",
+          "oklch(0.945 0.008 84.0)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Encre délavée",
+        "canonical": "oklch(0.430 0.010 70.0)",
+        "canonicalDark": "oklch(0.700 0.012 78.0)",
+        "tonalRamp": [
+          "oklch(0.15 0.007 70.0)",
+          "oklch(0.28 0.008 70.0)",
+          "oklch(0.430 0.010 70.0)",
+          "oklch(0.55 0.010 70.0)",
+          "oklch(0.65 0.011 70.0)",
+          "oklch(0.700 0.012 78.0)",
+          "oklch(0.82 0.010 78.0)",
+          "oklch(0.92 0.008 78.0)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Filet",
+        "canonical": "oklch(0.845 0.014 80.0)",
+        "canonicalDark": "oklch(0.330 0.014 64.0)",
+        "tonalRamp": [
+          "oklch(0.20 0.010 80.0)",
+          "oklch(0.330 0.014 64.0)",
+          "oklch(0.48 0.014 70.0)",
+          "oklch(0.62 0.014 75.0)",
+          "oklch(0.74 0.014 78.0)",
+          "oklch(0.845 0.014 80.0)",
+          "oklch(0.90 0.012 80.0)",
+          "oklch(0.95 0.008 80.0)"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Acier",
+        "canonical": "oklch(0.626 0.012 95.3)",
+        "canonicalDark": "oklch(0.560 0.014 90.0)",
+        "tonalRamp": [
+          "oklch(0.20 0.008 95.3)",
+          "oklch(0.33 0.010 95.3)",
+          "oklch(0.47 0.011 95.3)",
+          "oklch(0.560 0.014 90.0)",
+          "oklch(0.626 0.012 95.3)",
+          "oklch(0.72 0.011 95.3)",
+          "oklch(0.84 0.008 95.3)",
+          "oklch(0.93 0.006 95.3)"
+        ]
+      },
+      "go": {
+        "role": "tertiary",
+        "displayName": "Vert Marche",
+        "canonical": "oklch(0.560 0.110 150.0)",
+        "canonicalDark": "oklch(0.700 0.130 150.0)",
+        "tonalRamp": [
+          "oklch(0.18 0.05 150.0)",
+          "oklch(0.28 0.08 150.0)",
+          "oklch(0.38 0.095 150.0)",
+          "oklch(0.48 0.105 150.0)",
+          "oklch(0.560 0.110 150.0)",
+          "oklch(0.700 0.130 150.0)",
+          "oklch(0.82 0.09 150.0)",
+          "oklch(0.92 0.05 150.0)"
+        ]
+      },
+      "stop": {
+        "role": "tertiary",
+        "displayName": "Rouge Arrêt",
+        "canonical": "oklch(0.550 0.170 27.0)",
+        "canonicalDark": "oklch(0.650 0.170 27.0)",
+        "tonalRamp": [
+          "oklch(0.18 0.07 27.0)",
+          "oklch(0.28 0.11 27.0)",
+          "oklch(0.38 0.14 27.0)",
+          "oklch(0.48 0.16 27.0)",
+          "oklch(0.550 0.170 27.0)",
+          "oklch(0.650 0.170 27.0)",
+          "oklch(0.78 0.12 27.0)",
+          "oklch(0.90 0.06 27.0)"
+        ]
+      },
+      "screen": {
+        "role": "neutral",
+        "displayName": "Écran",
+        "canonical": "oklch(0.185 0.012 62.0)",
+        "note": "Fixe dans les deux thèmes — non redéfini dans .dark.",
+        "tonalRamp": [
+          "oklch(0.08 0.008 62.0)",
+          "oklch(0.185 0.012 62.0)",
+          "oklch(0.28 0.012 62.0)",
+          "oklch(0.40 0.012 62.0)",
+          "oklch(0.55 0.012 62.0)",
+          "oklch(0.70 0.010 62.0)",
+          "oklch(0.85 0.008 62.0)",
+          "oklch(0.95 0.006 62.0)"
+        ]
+      },
+      "screen-ink": {
+        "role": "neutral",
+        "displayName": "Encre d'écran",
+        "canonical": "oklch(0.900 0.010 84.0)",
+        "note": "Fixe dans les deux thèmes — non redéfini dans .dark.",
+        "tonalRamp": [
+          "oklch(0.20 0.008 84.0)",
+          "oklch(0.35 0.008 84.0)",
+          "oklch(0.50 0.009 84.0)",
+          "oklch(0.65 0.009 84.0)",
+          "oklch(0.78 0.010 84.0)",
+          "oklch(0.900 0.010 84.0)",
+          "oklch(0.95 0.007 84.0)",
+          "oklch(0.98 0.004 84.0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "H1 du hero, exclusivement, chasse frappée wdth 92."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titres de section h2/h3, chasse frappée wdth 92."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titres de fiche de domaine, carte d'état du hero."
+      },
+      "body": { "displayName": "Body", "purpose": "Prose, résumés, descriptions." },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Métadonnées denses : dates, stacks, lignes de terminal."
+      },
+      "eyebrow": {
+        "displayName": "Eyebrow",
+        "purpose": "Titres de bandeau en capitales, registre le plus étroit."
+      },
+      "hand": {
+        "displayName": "Hand",
+        "purpose": "Légende manuscrite en marge d'un tirage photo, jamais un contenu à lire."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lift-1",
+        "value": "0 1px 2px oklch(0.180 0.008 67.3 / 0.06), 0 2px 8px oklch(0.180 0.008 67.3 / 0.05)",
+        "purpose": "Contact léger : bouton secondaire, fiche du panneau à outils au survol."
+      },
+      {
+        "name": "lift-2",
+        "value": "0 2px 4px oklch(0.180 0.008 67.3 / 0.07), 0 12px 28px oklch(0.180 0.008 67.3 / 0.09)",
+        "purpose": "Élévation standard : carte d'état, tirage photo, fiche de domaine, terminal."
+      },
+      {
+        "name": "lift-3",
+        "value": "0 4px 8px oklch(0.180 0.008 67.3 / 0.08), 0 28px 56px oklch(0.180 0.008 67.3 / 0.14)",
+        "purpose": "Élévation maximale, survols les plus détachés du plan."
+      }
+    ],
+    "motion": [
+      {
+        "name": "lift-press",
+        "value": "transform 120ms ease-out",
+        "purpose": "active:translate-y-px — un enfoncement d'un pixel au clic, pas un rebond."
+      },
+      {
+        "name": "hover-rise",
+        "value": "transform 150ms ease-out, box-shadow 150ms ease-out",
+        "purpose": "hover:-translate-y-0.5 sur cartes et outils du panneau."
+      },
+      {
+        "name": "underline-sweep",
+        "value": "transform 200ms ease-out",
+        "purpose": "Soulignement qui se déploie de la gauche sur les liens de navigation."
+      },
+      {
+        "name": "bench-lift",
+        "value": "MathUtils.lerp factor 0.08-0.12 per frame",
+        "purpose": "Élévation et rotation d'un quart de tour des objets 3D au survol dans BenchScene."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (riveted)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "L'action principale du hero : rivetée dans le bois, pas posée dessus.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Me contacter<svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn-primary { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; height: 2.75rem; padding: 0 2rem; border-radius: 0.75rem; background: var(--copper); color: var(--copper-ink); font-family: var(--font-sans, sans-serif); font-weight: 500; text-decoration: none; transition: background 150ms ease-out, transform 120ms ease-out; } .ds-btn-primary::before, .ds-btn-primary::after { content: \"\"; position: absolute; top: 50%; width: 3px; height: 3px; border-radius: 999px; background: color-mix(in oklch, var(--ink) 25%, transparent); transform: translateY(-50%); } .ds-btn-primary::before { left: 0.55rem; } .ds-btn-primary::after { right: 0.55rem; } .ds-btn-primary:hover { background: color-mix(in oklch, var(--copper) 90%, transparent); } .ds-btn-primary:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; } .ds-btn-primary:active { transform: translateY(1px); } .ds-icon { width: 1rem; height: 1rem; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Second CTA, posé sur craie avec ombre d'objet.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">Voir les projets</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; height: 2.75rem; padding: 0 1.25rem; border-radius: 0.75rem; border: 1px solid var(--rule); background: var(--chalk); color: var(--ink); font-weight: 500; box-shadow: 0 1px 2px oklch(0.180 0.008 67.3 / 0.06), 0 2px 8px oklch(0.180 0.008 67.3 / 0.05); transition: border-color 150ms ease-out; } .ds-btn-secondary:hover { border-color: color-mix(in oklch, var(--copper) 50%, transparent); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }"
+    },
+    {
+      "name": "Domain Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Fiche de domaine de compétence : icône, titre, outils, preuve.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-head\"><span class=\"ds-card-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"18\" height=\"18\"><path d=\"M12 2l7 4v6c0 5-3 8-7 10-4-2-7-5-7-10V6l7-4z\"/></svg></span><div><h3 class=\"ds-card-title\">Sécurité</h3><p class=\"ds-card-body\">Scan et durcissement de la chaîne CI/CD.</p></div></div><ul class=\"ds-card-tools\"><li>Trivy</li><li>Snyk</li></ul></article>",
+      "css": ".ds-card { border-radius: 1.05rem; border: 1px solid var(--rule); background: var(--chalk); padding: 1.5rem; box-shadow: 0 1px 2px oklch(0.180 0.008 67.3 / 0.06), 0 2px 8px oklch(0.180 0.008 67.3 / 0.05); transition: transform 150ms ease-out, box-shadow 150ms ease-out; } .ds-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px oklch(0.180 0.008 67.3 / 0.07), 0 12px 28px oklch(0.180 0.008 67.3 / 0.09); } .ds-card-head { display: flex; gap: 0.75rem; align-items: flex-start; } .ds-card-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: 0.45rem; background: var(--board-sunk); color: var(--copper); } .ds-card-title { font-family: var(--font-display, sans-serif); font-variation-settings: 'wdth' 92; letter-spacing: -0.015em; font-weight: 700; font-size: 1.125rem; color: var(--ink); margin: 0; } .ds-card-body { margin-top: 0.375rem; font-size: 0.875rem; line-height: 1.6; color: var(--ink-soft); } .ds-card-tools { list-style: none; display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid color-mix(in oklch, var(--rule) 70%, transparent); } .ds-card-tools li { background: color-mix(in oklch, var(--board-sunk) 70%, transparent); border-radius: 0.45rem; padding: 0.25rem 0.5rem; font-family: monospace; font-size: 0.6875rem; color: var(--ink-soft); }"
+    },
+    {
+      "name": "Photo Slot (empty state)",
+      "kind": "custom",
+      "refersTo": "photo-slot",
+      "description": "Tirage photo posé sur l'établi, avec cadre de réserve honnête tant que le fichier n'existe pas.",
+      "html": "<figure class=\"ds-photo\"><div class=\"ds-photo-frame\"><div class=\"ds-photo-placeholder\"><span class=\"ds-photo-swatch\"></span><span class=\"ds-photo-path\">public/photos/portrait.webp</span><span class=\"ds-photo-ratio\">4:5</span></div></div><figcaption class=\"ds-photo-note\">Sur le terrain, 2023</figcaption></figure>",
+      "css": ".ds-photo { position: relative; transform: rotate(-1.2deg); } .ds-photo-frame { border-radius: 0.75rem; background: var(--chalk); padding: 0.375rem; box-shadow: 0 2px 4px oklch(0.180 0.008 67.3 / 0.07), 0 12px 28px oklch(0.180 0.008 67.3 / 0.09); } .ds-photo-placeholder { aspect-ratio: 4 / 5; border-radius: 5px; background: var(--board-sunk); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.375rem; padding: 0.75rem; text-align: center; } .ds-photo-swatch { width: 1.5rem; height: 1.5rem; border-radius: 5px; background: color-mix(in oklch, var(--steel) 22%, transparent); } .ds-photo-path { font-family: monospace; font-size: 10px; color: var(--ink-soft); } .ds-photo-ratio { font-family: monospace; font-size: 10px; color: var(--steel); } .ds-photo-note { position: absolute; bottom: -0.75rem; right: -0.5rem; max-width: 9rem; transform: rotate(-4deg); font-family: 'Caveat', cursive; font-size: 15px; line-height: 1.2; color: var(--ink-soft); }"
+    },
+    {
+      "name": "Tool Pegboard Item",
+      "kind": "chip",
+      "refersTo": "eyebrow-label",
+      "description": "Silhouette d'outil peinte sur le panneau ; se décolle et prend sa couleur au survol. L'emplacement vide est une variante non colorée avec bordure pointillée.",
+      "html": "<ul class=\"ds-pegboard\"><li><span class=\"ds-tool\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"18\" height=\"18\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/></svg>Docker</span></li><li><span class=\"ds-tool ds-tool-empty\"><span class=\"ds-tool-blank\"></span>En cours d'apprentissage</span></li></ul>",
+      "css": ".ds-pegboard { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; } .ds-tool { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.45rem; border: 1px solid transparent; padding: 0.5rem 0.625rem; font-family: monospace; font-size: 0.6875rem; color: var(--steel); transition: transform 150ms ease-out, border-color 150ms ease-out, background 150ms ease-out, color 150ms ease-out; } .ds-tool:hover { transform: translateY(-2px); border-color: var(--rule); background: var(--chalk); color: var(--ink); box-shadow: 0 1px 2px oklch(0.180 0.008 67.3 / 0.06), 0 2px 8px oklch(0.180 0.008 67.3 / 0.05); } .ds-tool-empty { border: 1px dashed color-mix(in oklch, var(--steel) 50%, transparent); color: var(--ink-soft); } .ds-tool-blank { width: 1.25rem; height: 1.25rem; border-radius: 5px; background: color-mix(in oklch, var(--steel) 22%, transparent); }"
+    },
+    {
+      "name": "Terminal Screen",
+      "kind": "custom",
+      "refersTo": "terminal-screen",
+      "description": "Écran allumé posé sur l'établi, fixe dans les deux thèmes (--screen n'est jamais redéfini en .dark).",
+      "html": "<section class=\"ds-terminal\"><div class=\"ds-terminal-bar\"><span class=\"ds-dot ds-dot-stop\"></span><span class=\"ds-dot ds-dot-copper\"></span><span class=\"ds-dot ds-dot-go\"></span><span class=\"ds-terminal-host\">you@portfolio: ~</span></div><div class=\"ds-terminal-body\"><p><span class=\"ds-prompt-user\">you</span><span class=\"ds-prompt-sep\">@</span><span class=\"ds-prompt-host\">portfolio</span><span class=\"ds-prompt-sep\">:~$</span> whoami</p><p class=\"ds-terminal-output\">DevOps · DevSecOps · développeur web</p></div></section>",
+      "css": ".ds-terminal { border-radius: 0.75rem; border: 1px solid var(--screen); background: var(--screen); color: var(--screen-ink); font-family: monospace; font-size: 0.875rem; box-shadow: 0 2px 4px oklch(0.180 0.008 67.3 / 0.07), 0 12px 28px oklch(0.180 0.008 67.3 / 0.09); overflow: hidden; } .ds-terminal-bar { display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 0.75rem; } .ds-dot { width: 10px; height: 10px; border-radius: 999px; opacity: 0.8; } .ds-dot-stop { background: var(--stop); } .ds-dot-copper { background: var(--copper); } .ds-dot-go { background: var(--go); } .ds-terminal-host { margin-left: 0.5rem; font-size: 11px; color: color-mix(in oklch, var(--screen-ink) 60%, transparent); } .ds-terminal-body { padding: 0.75rem 1rem; line-height: 1.6; } .ds-prompt-user { color: var(--go); } .ds-prompt-host { color: var(--copper); } .ds-prompt-sep { color: color-mix(in oklch, var(--screen-ink) 45%, transparent); } .ds-terminal-output { color: color-mix(in oklch, var(--screen-ink) 70%, transparent); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Lien de navigation principale, sur la barre collante posée sur le plan de travail.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">Projets</a><a href=\"#\" class=\"ds-nav-link ds-nav-link-current\" aria-current=\"page\">À propos</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 0.25rem; } .ds-nav-link { position: relative; display: inline-flex; align-items: center; height: 2.25rem; padding: 0 0.75rem; border-radius: 0.3rem; color: var(--ink-soft); text-decoration: none; font-size: 0.875rem; transition: color 150ms ease-out, background 150ms ease-out; } .ds-nav-link::after { content: \"\"; position: absolute; left: 0.75rem; right: 0.75rem; bottom: 0.35rem; height: 1px; background: var(--copper); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease-out; } .ds-nav-link:hover { color: var(--ink); background: var(--board-sunk); } .ds-nav-link:hover::after, .ds-nav-link-current::after { transform: scaleX(1); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "L'Établi",
+    "overview": "Un plan de travail d'ingénieur, pas une plaquette. Le monde précédent — poste de supervision, ardoise froide, ambre sodium — a été intégralement retiré ; il n'existe plus nulle part dans le build actuel et ne doit pas être réintroduit par réflexe. Ce qui le remplace refuse le même arrangement que le métier affiche toujours (héros centré, rangée de statistiques, grille de cartes de services égales) parce qu'une grille de cartes range des affirmations, quand un établi expose des objets. Chaque compétence est un outil posé sur le panneau, qu'on prend en main et qu'on repose ; ce qui est absent du panneau (ToolPegboard, silhouette vide, .learning) est aussi lisible que ce qui y est. Le système est tactile et matériel dans son vocabulaire (tirages photo légèrement de travers, étiquettes rivetées, silhouettes d'outils peintes, objets 3D en géométrie primitive) et retenu dans sa palette : deux neutres de bois et de craie, une encre, un unique accent cuivre — la couleur du logo, et non une couleur choisie pour le web. Le bois n'est jamais rendu comme une texture bitmap ; il n'existe que sous forme de lumière rasante (.board-light) et d'ombre portée (--lift-1/2/3). Le thème clair (l'atelier de jour) est la valeur par défaut ; le thème sombre (la nuit, sous une lampe d'établi) n'inverse pas mécaniquement les valeurs — le bois devient noyer, le cuivre gagne en présence puisqu'il reste la seule source chaude. Un couple de tokens fait exception : --screen / --screen-ink, l'écran allumé du terminal, volontairement absent du bloc .dark.",
+    "keyCharacteristics": [
+      "Plan de travail beige (--board) et craie (--chalk) comme matières de fond, jamais de blanc pur ni de noir pur",
+      "Un seul accent de marque, le cuivre du logo, jamais concurrencé par une seconde couleur d'interaction",
+      "Trois faces typographiques à rôles étanches (signalétique frappée / lecture / donnée), plus une main courante réservée aux annotations",
+      "Objets posés avec ombre douce à deux couches (--lift-1/2/3), jamais de bordure comme seul moyen de détachement",
+      "Le bois est une lumière et une ombre, jamais une texture — c'est la Règle du Bois Immatériel, non négociable",
+      "Le monde précédent (ardoise/ambre) est retiré en totalité ; ses tokens ne réapparaissent dans aucun nouveau code"
+    ],
+    "rules": [
+      {
+        "name": "La Règle du Bois Immatériel",
+        "body": "Le bois n'est jamais une image ni un motif répété : c'est uniquement .board-light et les ombres --lift-1/2/3. Toute tentative d'ajouter une texture de grain de bois, même subtile, viole l'invariant fondateur du monde et doit être refusée.",
+        "section": "colors"
+      },
+      {
+        "name": "La Règle de la Source Unique",
+        "body": "Les treize primitives de :root/.dark dans src/styles/globals.css sont la seule définition de couleur du projet. Tout code nouveau les référence via var(--copper) ou les classes Tailwind dérivées — jamais un hex en dur.",
+        "section": "colors"
+      },
+      {
+        "name": "La Règle de l'Écran Fixe",
+        "body": "--screen et --screen-ink ne sont volontairement pas redéfinis dans .dark : un écran allumé reste sombre dans les deux thèmes.",
+        "section": "colors"
+      },
+      {
+        "name": "La Règle de la Chasse Frappée",
+        "body": "Archivo sans wdth 92 n'est pas la display du projet. Tout nouveau titre passe par h1–h3 ou .font-display, qui portent déjà le réglage.",
+        "section": "typography"
+      },
+      {
+        "name": "La Règle de la Main Réservée",
+        "body": "Caveat n'apparaît que pour une annotation en marge d'un objet posé. Elle ne porte jamais un titre, un CTA ou un contenu qui doit être lu sans effort.",
+        "section": "typography"
+      },
+      {
+        "name": "La Règle du Léger Décalage",
+        "body": "Un tirage photo n'est jamais posé droit : une légère rotation, comme une épreuve sortie d'une planche-contact.",
+        "section": "layout"
+      },
+      {
+        "name": "La Règle de l'Objet Posé",
+        "body": "Chaque composant détaché du fond porte au minimum --lift-1. Un élément sans ombre doit être soit un fond, soit une étiquette rivetée (.riveted), délibérément sans ombre.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Règle de la Vis, pas du Clou",
+        "body": "Une étiquette rivetée n'a pas d'ombre — elle est fixée dans le bois, pas posée dessus. Tout le reste porte une ombre --lift-*. Les deux traitements ne se mélangent jamais sur un même élément.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do garder le bois comme lumière et ombre uniquement (.board-light, --lift-1/2/3) — jamais un fichier image ni un motif répété.",
+      "Do référencer les couleurs via var(--copper) et les classes Tailwind dérivées ; globals.css reste la source unique.",
+      "Do donner une ombre --lift-* à tout objet détaché du plan de travail ; réserver .riveted (sans ombre) à la seule action principale du hero.",
+      "Do lire les couleurs 3D au runtime sur les tokens CSS (readCssColorHex), comme le fait BenchScene, plutôt que de les recopier en valeur figée.",
+      "Do garder --screen/--screen-ink fixes dans les deux thèmes : le terminal ne s'inverse jamais."
+    ],
+    "donts": [
+      "Don't réintroduire les tokens du monde retiré (signal, healthy, ink-deep, alert, info) : ils n'existent plus dans globals.css, et le build actuel ne les canonise pas malgré leur présence résiduelle dans cinq fichiers non nettoyés.",
+      "Don't rendre le bois comme une texture bitmap, même subtile — c'est l'invariant fondateur de ce monde.",
+      "Don't appliquer wdth 92 en dehors de h1–h3/.font-display : la chasse frappée est réservée à la signalétique.",
+      "Don't utiliser Caveat pour un contenu qui doit être lu sans effort ; elle est réservée à l'annotation en marge."
+    ]
+  }
+}

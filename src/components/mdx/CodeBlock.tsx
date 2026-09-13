@@ -1,11 +1,7 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-export function CodeBlock({
-  className,
-  children,
-  ...props
-}: HTMLAttributes<HTMLPreElement>) {
+export function CodeBlock({ className, children, ...props }: HTMLAttributes<HTMLPreElement>) {
   return (
     <pre
       className={cn(
