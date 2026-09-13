@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
   security-events: write
+  # Lecture seule : l'action CodeQL lit l'exécution en cours pour sa télémétrie
+  # (sinon, avertissement « Resource not accessible by integration »).
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,8 +19,12 @@ concurrency:
 
 env:
   NODE_VERSION: "22"
-  PNPM_VERSION: "9.15.0"
+  # La version de pnpm n'est pas fixée ici : pnpm/action-setup lit le champ
+  # "packageManager" de package.json. La déclarer aussi dans ce fichier fait
+  # échouer l'action dès que les deux versions divergent.
 
+# Actions en versions majeures qui tournent sur Node 24 : les versions
+# précédentes (runtime Node 20) déclenchent l'avertissement de dépréciation.
 jobs:
   # ---------------------------------------------------------------------------
   # Lint, typecheck, unit tests, content/i18n integrity
@@ -27,13 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -66,13 +71,11 @@ jobs:
     timeout-minutes: 15
     needs: quality
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -97,13 +100,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -115,7 +116,8 @@ jobs:
         continue-on-error: true
 
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@master
+        # Épinglé sur une version publiée plutôt que sur la branche master.
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -126,7 +128,9 @@ jobs:
           exit-code: "0"
 
       - name: Upload Trivy results to GitHub Security
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        # Seulement si Trivy a produit son rapport : quand une étape précédente
+        # échoue, l'envoi ne doit pas ajouter une seconde erreur trompeuse.
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif
