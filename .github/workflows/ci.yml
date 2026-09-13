@@ -127,10 +127,43 @@ jobs:
           output: trivy-results.sarif
           exit-code: "0"
 
-      - name: Upload Trivy results to GitHub Security
-        # Seulement si Trivy a produit son rapport : quand une étape précédente
-        # échoue, l'envoi ne doit pas ajouter une seconde erreur trompeuse.
+      # Les étapes suivantes ne tournent que si Trivy a produit son rapport :
+      # quand une étape précédente échoue, elles n'ajoutent pas d'erreur trompeuse.
+
+      - name: Résumé Trivy dans la page de l'exécution
         if: always() && hashFiles('trivy-results.sarif') != ''
+        # Informatif : une erreur de mise en forme ne doit pas faire échouer la CI.
+        continue-on-error: true
+        run: |
+          count=$(jq '[.runs[].results[]] | length' trivy-results.sarif)
+          {
+            echo "## Trivy : vulnérabilités HIGH et CRITICAL"
+            echo
+            if [ "$count" -eq 0 ]; then
+              echo "Aucune vulnérabilité HIGH ou CRITICAL corrigeable."
+            else
+              echo "$count résultat(s)."
+              echo
+              echo "| Règle | Niveau | Fichier | Détail |"
+              echo "|---|---|---|---|"
+              jq -r '.runs[].results[] | "| \(.ruleId) | \(.level // "") | \(.locations[0].physicalLocation.artifactLocation.uri // "") | \((.message.text // "") | split("\n")[0] | gsub("\\|"; "/")) |"' trivy-results.sarif
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Rapport Trivy en artefact
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: trivy-results
+          path: trivy-results.sarif
+          retention-days: 14
+
+      - name: Upload Trivy results to GitHub Security
+        # Le code scanning n'existe que sur un dépôt public, ou privé avec
+        # GitHub Code Security (payant). Il s'active dans Settings → Code
+        # security, puis avec la variable de dépôt CODE_SCANNING_ENABLED=true
+        # (Settings → Secrets and variables → Actions → Variables).
+        if: always() && hashFiles('trivy-results.sarif') != '' && vars.CODE_SCANNING_ENABLED == 'true'
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-results.sarif
